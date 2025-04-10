@@ -175,6 +175,7 @@ for (posicion = 0; posicion < marcas.length; posicion++) {
 }
 
 let notas = [5, 5, 2, 7, 4];
+
 let total = 0;
 for (let i = 0; i < notas.length; i++) {
   total += notas[i];
