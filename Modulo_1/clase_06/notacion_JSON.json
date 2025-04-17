@@ -1,0 +1,24 @@
+{
+    "curso": {
+        "nombre": "Introducción a la programación",
+        "duracion": "8 semanas",
+        "activo": true,
+        "descripcion": "Introducción básica a los conceptos fundamentales de la programación.",
+        "docente": {
+            "nombre": "Juan Pérez",
+            "email": "juan@example.com"
+        },
+        "alumnos": [
+            {
+                "nombre": "María",
+                "apellido": "Gómez",
+                "edad": 25
+            },
+            {
+                "nombre": "Pedro",
+                "apellido": "López",
+                "edad": 30
+            }
+        ]
+    }
+}

@@ -54,9 +54,9 @@ si lo hacen se imprime un mensaje, de lo contrario no hace nada y sigue la itera
 
 let nombres = ["Juan", "Pedro", "Maria", "Jose"];
 for (const nombre of nombres) {
-  if (nombre.startsWith('M'))) {
+  if (nombre.startsWith('M')) {
     console.log('el nombre inicia con la letra M')
-  } 
+  }
 }
 
 
@@ -70,72 +70,22 @@ console.log(quitado);     //mostramos el valor de la variable quitado
 
 
 // metodo include para saber si un elemento existe dentro de un array 
-let animal = "raton"
-console.log(animales.includes(animal)); // devuelve true o false
- if (animales.includes(animal)) {
-   console.log(animal + " esta en la lista");
- } else {
-   console.log(animal + " NO esta en la lista");
- }
+let mascota = "raton"
+console.log(animales.includes(mascota)); // devuelve true o false
+if (animales.includes(mascota)) {
+  console.log(mascota + " esta en la lista");
+} else {
+  console.log(mascota + " NO esta en la lista");
+}
 
-  // push() agrega un elemento al final del array
+// push() agrega un elemento al final del array
 animales.push('aguila');
 
-   //unshift() agrega un elemento al principio del array
+//unshift() agrega un elemento al principio del array
 animales.unshift('gato');
 
-  //shift() elimina el primer elemento del array
+//shift() elimina el primer elemento del array
 animales.shift();
-  
-  //scplice(posicion, cantidad a eliminar, elemento a agregar)
+
+//scplice(posicion, cantidad a eliminar, elemento a agregar)
 animales.splice(1, 1, 'lobo');
-
- 
-
-// -------- FUNCIONES --------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------
-
-personas = ['Lucas', 'Juan', 'Pedro', 'Maria', 'Jose'];             //declaro un array de personas
-otrasPersonas = ['Josefina', 'Pepe', 'Sandro', 'Marta', 'Josue'];   //declaro otro array de personas
-
-todas = personas.concat(otrasPersonas);                             // uso el metodo concat para unir los dos arrays
-
-// definimos una funcion que recibe un array como parametro y lo recorre imprimiendo cada elemento por consola
-function saludador(algo) {
-  for (const palabra of algo) {
-    console.log(palabra);
-  }
-}
-
-// llamo a la funcion definida anteriormente pasandole como parametro el array a ser recorrido
-saludador(todas);
-
-
-/* 
-Programar una función que reciba un array de strings y una palabra. La función debe verificar si la
-palabra existe en el array y devuelve true si es así, o false en caso contrario 
-*/
-
-personas = ["Lucas", "Juan", "Pedro", "Maria", "Jose"];             //volver a declarar es innesesario pero es para que se vea mas cerca
-otrasPersonas = ["Josefina", "Pepe", "Sandro", "Marta", "Josue"];
-
-busqueda = buscador1(otrasPersonas, "Pepe");                        //llaamando a buscador1 para aeriguar si encuantra a Pepe
-
-// definiendo una alternativa de recorrido manual
-function buscador1(unArray, unaPalabra) {
-  for (const contenido of unArray) {
-    if (contenido === unaPalabra) {
-      return `la palabra recibida ${unaPalabra} se encontró`;
-    }
-  }
-  return `la palabra recibida ${unaPalabra} no esta aquí`;
-}
-
-// definiendo una alternativa de recorrido automatizado utilizando el metodo includes
-// en este caso la variable llamada search se tranforma en una funcion por lo que no hace falta llamarla como buscador 2
-
-let search = function buscador2(unArray, unaPalabra) {
-  return unArray.includes(unaPalabra);
-};
-
-console.log(search(personas, "Jesus"));   //imprimimos el resultado de la busqueda utilizando la funcion search (buscador2)
