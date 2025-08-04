@@ -46,46 +46,6 @@ CREATE TABLE Resenia (
 );
 
 
--- -------------------------------------------------------------------------------
-/*
-Usuarios
-	GET /usuarios: Obtener todos los usuarios.
-	GET /usuarios/:id: Obtener un usuario por su id_usuario.
-	POST /usuarios: Crear un nuevo usuario.
-	PUT /usuarios/:id: Actualizar los datos de un usuario.
-	DELETE /usuarios/:id: Eliminar un usuario.
--- ----------------------------------------------
-Libros
-	GET /libros: Obtener todos los libros.
-	GET /libros/:id: Obtener un libro por su id_libro. (o cualquiera de sus campos)
-	POST /libros: Crear un nuevo libro.
-	PUT /libros/:id: Actualizar los datos de un libro.
-	PUT /libros/:id/existencia: Actualizar la existencia de un libro (cantidad disponible), podria no ser un endpoint sino un disparador.
-	DELETE /libros/:id: Eliminar un libro.
--- ----------------------------------------------
-Prestamos
-	GET /prestamos: Obtener todos los préstamos.
-	GET /prestamos/:id: Obtener un préstamo por su id_prestamos.
-	POST /prestamos: Crear un nuevo préstamo (reserva de un libro).
-	PUT /prestamos/:id: Actualizar los datos de un préstamo (por ejemplo, fechas de devolución).
-	DELETE /prestamos/:id: Eliminar un préstamo.
--- ----------------------------------------------
-Resenias
-	GET /resenias: Obtener todas las reseñas.
-	GET /resenias/:id: Obtener una reseña por su id_resenia.
-	GET /resenias/libro/:id_libro: Obtener reseñas de un libro específico.
-	POST /resenias: Crear una nueva reseña.
-	PUT /resenias/:id: Actualizar una reseña existente.
-	DELETE /resenias/:id: Eliminar una reseña.
-
--- ----------------------------------------------
-lógicas específicas
-	GET /libros/disponibles: Obtener todos los libros con existencia disponible para préstamos.
-	GET /prestamos/usuario/:id_usuario: Obtener todos los préstamos de un usuario específico.
-	GET /prestamos/libro/:id_libro: Obtener todos los préstamos realizados para un libro específico.
-	
-*/
-
 
 
 
