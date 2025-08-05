@@ -1,48 +1,49 @@
+drop database biblioteca;
 create database biblioteca;
 use biblioteca;
 
-CREATE TABLE Rol (
+CREATE TABLE rol (
     id_rol INT AUTO_INCREMENT PRIMARY KEY,
     nombre_rol VARCHAR(50) UNIQUE NOT NULL,
     descripcion TEXT
 );
-CREATE TABLE Usuario (
+CREATE TABLE usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     mail VARCHAR(50) UNIQUE NOT NULL,
     contrasenia VARCHAR(255) NOT NULL,
     id_rol INT NOT NULL,
-    FOREIGN KEY (id_rol) REFERENCES Rol(id_rol)
+    FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
 );
 
-CREATE TABLE Libro (
+CREATE TABLE libro (
     id_libro INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
     autor VARCHAR(100) NOT NULL,
     editorial VARCHAR(100),
     anio_publicacion CHAR(4) NOT NULL, 
-    genero VARCHAR(100)
+    genero VARCHAR(100),
     existencias INT DEFAULT 0
 );
 
-CREATE TABLE Prestamo (
+CREATE TABLE prestamo (
     id_prestamo INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
     id_libro INT,
     fecha_prestamo DATE NOT NULL,
     fecha_devolucion DATE,
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-    FOREIGN KEY (id_libro) REFERENCES Libro(id_libro)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_libro) REFERENCES libro(id_libro)
 );
-CREATE TABLE Resenia (
+CREATE TABLE resenia (
     id_resenia INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
     id_libro INT,
     texto_resenia TEXT,
     calificacion INT CHECK (calificacion BETWEEN 1 AND 5),
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-    FOREIGN KEY (id_libro) REFERENCES Libro(id_libro)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_libro) REFERENCES libro(id_libro)
 );
 
 
@@ -59,7 +60,7 @@ USE biblioteca;
 -- -------------------------------------------------------------------
 -- INSERTS PARA LA TABLA 'Rol'
 -- -------------------------------------------------------------------
-INSERT INTO Rol (nombre_rol, descripcion) VALUES
+INSERT INTO rol (nombre_rol, descripcion) VALUES
 ('Administrador', 'Control total sobre la aplicación y los datos.'),
 ('Bibliotecario', 'Gestión de libros, préstamos y usuarios.'),
 ('Lector', 'Acceso a la búsqueda de libros, préstamos y reseñas.');
@@ -68,7 +69,7 @@ INSERT INTO Rol (nombre_rol, descripcion) VALUES
 -- INSERTS PARA LA TABLA 'Usuario'
 -- -------------------------------------------------------------------
 -- Se asume que id_rol 1 = Administrador, 2 = Bibliotecario, 3 = Lector
-INSERT INTO Usuario (nombre, apellido, mail, contrasenia, id_rol) VALUES
+INSERT INTO usuario (nombre, apellido, mail, contrasenia, id_rol) VALUES
 ('Ana', 'García', 'ana.garcia@mail.com', 'hashedpass1', 3),
 ('Juan', 'Pérez', 'juan.perez@mail.com', 'hashedpass2', 3),
 ('María', 'López', 'maria.lopez@mail.com', 'hashedpass3', 3),
@@ -111,12 +112,12 @@ INSERT INTO Usuario (nombre, apellido, mail, contrasenia, id_rol) VALUES
 -- -------------------------------------------------------------------
 -- INSERTS PARA LA TABLA 'Libro'
 -- -------------------------------------------------------------------
-INSERT INTO Libro (titulo, autor, editorial, anio_publicacion, genero) VALUES
+INSERT INTO libro (titulo, autor, editorial, anio_publicacion, genero) VALUES
 ('Cien años de soledad', 'Gabriel García Márquez', 'Editorial Sudamericana', 1967, 'Realismo Mágico'),
 ('El ingenioso hidalgo Don Quijote de la Mancha', 'Miguel de Cervantes', 'Francisco de Robles', 1605, 'Novela de caballerías'),
 ('1984', 'George Orwell', 'Secker & Warburg', 1949, 'Distopía'),
 ('Orgullo y prejuicio', 'Jane Austen', 'T. Egerton, Whitehall', 1813, 'Romance'),
-('El Gran Gatsby', 'F. Scott Fitzgerald', 'Charles Scribner\'s Sons', 1925, 'Novela'),
+('El Gran Gatsby', 'F. Scott Fitzgerald', 'Charles Scribners Sons', 1925, 'Novela'),
 ('Crimen y castigo', 'Fiódor Dostoievski', 'The Russian Messenger', 1866, 'Filosofía'),
 ('Ulises', 'James Joyce', 'Sylvia Beach', 1922, 'Modernismo'),
 ('En busca del tiempo perdido', 'Marcel Proust', 'Grasset', 1913, 'Novela'),
@@ -214,7 +215,7 @@ INSERT INTO Libro (titulo, autor, editorial, anio_publicacion, genero) VALUES
 -- -------------------------------------------------------------------
 -- INSERTS PARA LA TABLA 'Prestamo'
 -- -------------------------------------------------------------------
-INSERT INTO Prestamo (id_usuario, id_libro, fecha_prestamo, fecha_devolucion) VALUES
+INSERT INTO prestamo (id_usuario, id_libro, fecha_prestamo, fecha_devolucion) VALUES
 (1, 1, '2023-01-10', '2023-01-25'),
 (2, 3, '2023-01-15', '2023-02-01'),
 (3, 5, '2023-01-20', '2023-02-05'),
@@ -330,7 +331,7 @@ INSERT INTO Prestamo (id_usuario, id_libro, fecha_prestamo, fecha_devolucion) VA
 -- -------------------------------------------------------------------
 -- INSERTS PARA LA TABLA 'Resenia'
 -- -------------------------------------------------------------------
-INSERT INTO Resenia (id_usuario, id_libro, texto_resenia, calificacion) VALUES
+INSERT INTO resenia (id_usuario, id_libro, texto_resenia, calificacion) VALUES
 (1, 1, 'Una obra maestra, imprescindible para cualquier amante de la literatura.', 5),
 (2, 3, 'Interesante, aunque un poco densa en algunas partes. Te hace pensar.', 4),
 (3, 5, 'Un clásico con un lenguaje hermoso, pero triste.', 4),
