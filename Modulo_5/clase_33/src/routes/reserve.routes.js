@@ -8,15 +8,22 @@ import {
   getReservesByUserId,
   getReservesByBookId,
 } from "../controller/reserve.controller.js";
+import { 
+  validateCreateReserve, 
+  validateUpdateReserve, 
+  validateReserveId, 
+  validateUserId, 
+  validateBookId 
+} from "../middleware/middelware.js";
 
 const router = Router();
 
 router.get("/prestamos", getAllReserves);
-router.get("/prestamos/usuario/:id_usuario", getReservesByUserId);
-router.get("/prestamos/libro/:id_libro", getReservesByBookId);
-router.get("/prestamos/:id", getReserveById);
-router.post("/prestamos", createReserve);
-router.put("/prestamos/:id", updateReserveById);
-router.delete("/prestamos/:id", deleteReserveById);
+router.get("/prestamos/usuario/:id_usuario", validateUserId, getReservesByUserId);
+router.get("/prestamos/libro/:id_libro", validateBookId, getReservesByBookId);
+router.get("/prestamos/:id", validateReserveId, getReserveById);
+router.post("/prestamos", validateCreateReserve, createReserve);
+router.put("/prestamos/:id", validateUpdateReserve, updateReserveById);
+router.delete("/prestamos/:id", validateReserveId, deleteReserveById);
 
 export default router;

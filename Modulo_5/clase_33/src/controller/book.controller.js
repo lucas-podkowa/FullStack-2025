@@ -1,5 +1,6 @@
 import { getAll, getById, create, updateById, deleteById, getAvailable, updateStockById } from "../model/book.model.js";
 
+
 export const getAllBooks = async (req, res) => {
   try {
     const books = await getAll();
@@ -20,6 +21,7 @@ export const getBookById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 export const createBook = async (req, res) => {
   try {

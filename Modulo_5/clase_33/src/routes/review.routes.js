@@ -7,15 +7,21 @@ import {
   updateReviewById,
   deleteReviewById,
 } from "../controller/review.controller.js";
-import { validateCreateReview, validateUpdateReview } from "../middleware/middelware.js";
+import { 
+  validateCreateReview, 
+  validateUpdateReview, 
+  validateReviewId, 
+  validateBookId 
+} from "../middleware/middelware.js";
+
 
 const router = Router();
 
 router.get("/resenias", getAllReviews);
-router.get("/resenias/libro/:id_libro", getReviewsByBookId);
-router.get("/resenias/:id", getReviewById);
+router.get("/resenias/libro/:id_libro", validateBookId, getReviewsByBookId);
+router.get("/resenias/:id", validateReviewId, getReviewById);
 router.post("/resenias", validateCreateReview, createReview);
 router.put("/resenias/:id", validateUpdateReview, updateReviewById);
-router.delete("/resenias/:id", deleteReviewById);
+router.delete("/resenias/:id", validateReviewId, deleteReviewById);
 
 export default router;
