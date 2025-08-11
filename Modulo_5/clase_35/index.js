@@ -49,7 +49,23 @@ app.use((req, res) => {
   res.status(404).send("Has ingresado una URL sin procesamiento");
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+startServer(process.env.APP_PORT);
+
+
+
+// funcion que intenta iniciar el servidor en el puerto especificado o en el siguiente disponible
+function startServer(puerto) {
+  const server = app.listen(puerto, () => {
+    console.log(`Servidor escuchando en: http://localhost:${puerto}`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.log(`Puerto ${puerto} en uso, intentando con el puerto ${puerto + 1}...`);
+      puerto++;
+      startServer(puerto); // Intenta con el siguiente puerto
+    } else {
+      console.error("Error al iniciar el servidor:", err);
+    }
+  });
+}

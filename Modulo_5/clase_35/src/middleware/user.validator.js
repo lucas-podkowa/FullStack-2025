@@ -1,4 +1,6 @@
 import { check, param, validationResult } from "express-validator";
+import jwt from "jsonwebtoken";
+import 'dotenv/config';
 
 export const valCreateUser = [
   check("nombre")
@@ -90,3 +92,51 @@ export const valUserId = [
     next();
   },
 ];
+
+export const isAutenticated = (req, res, next) => {
+  if (req.headers["authorization"]) {
+    try {
+      const token = req.headers["authorization"];
+
+      const claveSecreta = process.env.SECRET_KEY
+      const verified = jwt.verify(token, claveSecreta);
+      if (verified) {
+        next();
+      } else {
+        res.status(403).json({ message: "token invalido" });
+      }
+    } catch (error) {
+      res.status(403).json({ message: error.message });
+    }
+  } else {
+    return res
+      .status(403)
+      .json({ message: "No tienes token de autenticación, vuelve a loguear" });
+  }
+};
+
+//----- alternativa
+
+function verificarToken(req, res, next) {
+  if (req.headers["authorization"]) {
+    try {
+      const token = req.headers["authorization"];
+      const verified = jwt.verify(token, "ultraMegaSecretPass");
+      if (verified) {
+        next();
+      } else {
+        res.status(403).send({
+          message: "Token invalido, permiso denegado",
+        });
+      }
+    } catch (error) {
+      res.status(403).send({
+        message: "Acceso Denegado",
+      });
+    }
+  } else {
+    res.status(403).send({
+      message: "No posee token de autorizacion",
+    });
+  }
+}

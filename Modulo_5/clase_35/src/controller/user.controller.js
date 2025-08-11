@@ -20,8 +20,7 @@ export const login = async (req, res) => {
         apellido: userFromDB.apellido,
         mail: userFromDB.mail
       }
-
-      const SECRET_KEY = process.env.JWT_SECRET || 'algunaClaveSecreta';
+      const SECRET_KEY = process.env.SECRET_KEY || 'algunaClaveSecreta';
       //firmar(dato_a_firmar, 'clave_a_utulizar_en_la_firma', {tiempo_de_vida}, (err, exito)=>{ manejar el resultado})
       jwt.sign(payload, SECRET_KEY, { expiresIn: '600s' }, (err, token) => {
         if (err) {
