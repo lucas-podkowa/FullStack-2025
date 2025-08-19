@@ -1,0 +1,15 @@
+        h2 {
+            color: red;
+        }
+
+        nav p {
+            border: 1px blue dashed;
+        }
+
+        section p {
+            background-color: white;
+        }
+
+        body {
+            background-color: lightgrey;
+        }

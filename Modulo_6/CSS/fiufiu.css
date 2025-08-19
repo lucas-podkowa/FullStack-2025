@@ -1,0 +1,84 @@
+/*
+para añadir o concatenar selectores utilizo la coma (,)
+*/
+p,
+h2,
+h3,
+h4 {
+    background-color: white;
+}
+
+div {
+    border-radius: 200px;
+    background-color: green;
+    margin: 50px;
+    padding: 50px;
+}
+
+header {
+    background-color: lightpink;
+    font-size: 10px;
+}
+
+main {
+    background-color: rgba(112, 234, 177, 0.395);
+    font-size: 32px;
+    font-family: 'Courier New', Courier, monospace
+}
+
+footer {
+    background-color: orange;
+    font-size: 10px;
+}
+
+/*
+Etiquetas CSS mas utilizadas segun la IA
+
+Estilizado visual y texto
+
+color – Define el color del texto.
+
+background-color – Establece el color de fondo de un elemento.
+
+font-size – Cambia el tamaño de la fuente.
+
+font-family – Define el tipo de fuente.
+
+font-weight – Controla el grosor del texto (ej: bold).
+
+text-align – Alinea el texto (izquierda, derecha, centro, justificado).
+
+text-decoration – Añade subrayado, tachado, etc.
+
+line-height – Controla el espaciado vertical entre líneas de texto.
+
+📐 Tamaño y disposición
+
+width – Establece el ancho de un elemento.
+
+height – Establece la altura de un elemento.
+
+padding – Añade espacio interno entre el contenido y el borde.
+
+margin – Añade espacio externo alrededor del elemento.
+
+border – Define el borde alrededor del elemento (ancho, estilo, color).
+
+box-sizing – Define cómo se calculan width y height (ej: border-box).
+
+📦 Modelo de caja y posicionamiento
+
+display – Controla cómo se muestra un elemento (ej: block, inline, flex, grid, none).
+
+position – Define el tipo de posicionamiento (ej: static, relative, absolute, fixed).
+
+top, right, bottom, left – Posicionan elementos según el valor de position.
+
+🌈 CSS3 y diseño moderno
+
+border-radius – Redondea las esquinas de un elemento.
+
+box-shadow – Aplica sombras a los elementos.
+
+transition – Agrega animaciones suaves entre cambios de propiedades.
+*/

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Hotel - Hoteles del Caribe</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-cyan-100 min-h-screen py-8">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-6">
+                <h1 class="text-3xl font-bold text-white text-center">🏖️ Hoteles del Caribe</h1>
+                <p class="text-blue-100 text-center mt-2">Formulario de Reserva</p>
+            </div>
+
+            <form action="/procesar-reserva" method="POST" class="p-8 space-y-8">
+                <!-- Información del Hotel y Fechas -->
+                <fieldset class="border-2 border-gray-200 rounded-lg p-6">
+                    <legend class="text-lg font-semibold text-gray-800 px-3 bg-white">🏨 Detalles de la Reserva</legend>
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="col-span-1 md:col-span-2">
+                            <label for="hotel" class="block text-sm font-medium text-gray-700 mb-2">Hotel
+                                seleccionado:</label>
+                            <select id="hotel" name="hotel" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Seleccione un hotel</option>
+                                <option value="paradise-resort">Paradise Beach Resort - Cancún</option>
+                                <option value="tropical-dreams">Tropical Dreams Hotel - Playa del Carmen</option>
+                                <option value="caribbean-luxury">Caribbean Luxury Resort - Cozumel</option>
+                                <option value="ocean-breeze">Ocean Breeze All Inclusive - Riviera Maya</option>
+                                <option value="sunset-paradise">Sunset Paradise Resort - Bahamas</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="fecha-entrada" class="block text-sm font-medium text-gray-700 mb-2">Fecha de
+                                entrada:</label>
+                            <input type="date" id="fecha-entrada" name="fecha_entrada" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <div>
+                            <label for="fecha-salida" class="block text-sm font-medium text-gray-700 mb-2">Fecha de
+                                salida:</label>
+                            <input type="date" id="fecha-salida" name="fecha_salida" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <div class="col-span-1 md:col-span-2">
+                            <label for="noches" class="block text-sm font-medium text-gray-700 mb-2">Número de
+                                noches:</label>
+                            <input type="number" id="noches" name="noches" min="1" max="30" readonly
+                                class="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Información de Huéspedes -->
+                <fieldset class="border-2 border-gray-200 rounded-lg p-6">
+                    <legend class="text-lg font-semibold text-gray-800 px-3 bg-white">👥 Información de Huéspedes
+                    </legend>
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label for="adultos" class="block text-sm font-medium text-gray-700 mb-2">Número de
+                                adultos:</label>
+                            <select id="adultos" name="adultos" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="1">1 adulto</option>
+                                <option value="2">2 adultos</option>
+                                <option value="3">3 adultos</option>
+                                <option value="4">4 adultos</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="ninos" class="block text-sm font-medium text-gray-700 mb-2">Número de niños
+                                (0-12 años):</label>
+                            <select id="ninos" name="ninos"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="0">0 niños</option>
+                                <option value="1">1 niño</option>
+                                <option value="2">2 niños</option>
+                                <option value="3">3 niños</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="bebes" class="block text-sm font-medium text-gray-700 mb-2">Número de bebés (0-2
+                                años):</label>
+                            <select id="bebes" name="bebes"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="0">0 bebés</option>
+                                <option value="1">1 bebé</option>
+                                <option value="2">2 bebés</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Tipo de Habitación -->
+                <fieldset class="border-2 border-gray-200 rounded-lg p-6">
+                    <legend class="text-lg font-semibold text-gray-800 px-3 bg-white">🛏️ Tipo de Habitación</legend>
+                    <div class="mt-4 space-y-3">
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-blue-50 transition-colors">
+                            <input type="radio" id="habitacion-estandar" name="tipo_habitacion" value="estandar"
+                                required class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <label for="habitacion-estandar" class="ml-3 text-sm font-medium text-gray-700">Habitación
+                                Estándar (Vista parcial al mar)</label>
+                        </div>
+
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-blue-50 transition-colors">
+                            <input type="radio" id="habitacion-superior" name="tipo_habitacion" value="superior"
+                                class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <label for="habitacion-superior" class="ml-3 text-sm font-medium text-gray-700">Habitación
+                                Superior (Vista al mar)</label>
+                        </div>
+
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-blue-50 transition-colors">
+                            <input type="radio" id="suite-junior" name="tipo_habitacion" value="suite-junior"
+                                class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <label for="suite-junior" class="ml-3 text-sm font-medium text-gray-700">Suite Junior (Vista
+                                panorámica)</label>
+                        </div>
+
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-blue-50 transition-colors">
+                            <input type="radio" id="suite-presidencial" name="tipo_habitacion"
+                                value="suite-presidencial" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <label for="suite-presidencial" class="ml-3 text-sm font-medium text-gray-700">Suite
+                                Presidencial (Frente al mar)</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Plan de Alimentación -->
+                <fieldset class="border-2 border-gray-200 rounded-lg p-6">
+                    <legend class="text-lg font-semibold text-gray-800 px-3 bg-white">🍽️ Plan de Alimentación</legend>
+                    <div class="mt-4 space-y-3">
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-green-50 transition-colors">
+                            <input type="radio" id="solo-hospedaje" name="plan_alimentacion" value="solo-hospedaje"
+                                required class="w-4 h-4 text-green-600 focus:ring-green-500">
+                            <label for="solo-hospedaje" class="ml-3 text-sm font-medium text-gray-700">Solo
+                                hospedaje</label>
+                        </div>
+
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-green-50 transition-colors">
+                            <input type="radio" id="desayuno" name="plan_alimentacion" value="desayuno"
+                                class="w-4 h-4 text-green-600 focus:ring-green-500">
+                            <label for="desayuno" class="ml-3 text-sm font-medium text-gray-700">Desayuno
+                                incluido</label>
+                        </div>
+
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-green-50 transition-colors">
+                            <input type="radio" id="media-pension" name="plan_alimentacion" value="media-pension"
+                                class="w-4 h-4 text-green-600 focus:ring-green-500">
+                            <label for="media-pension" class="ml-3 text-sm font-medium text-gray-700">Media pensión
+                                (Desayuno + Cena)</label>
+                        </div>
+
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-green-50 transition-colors">
+                            <input type="radio" id="pension-completa" name="plan_alimentacion" value="pension-completa"
+                                class="w-4 h-4 text-green-600 focus:ring-green-500">
+                            <label for="pension-completa" class="ml-3 text-sm font-medium text-gray-700">Pensión
+                                completa</label>
+                        </div>
+
+                        <div
+                            class="flex items-center p-3 border border-gray-200 rounded-md hover:bg-green-50 transition-colors">
+                            <input type="radio" id="todo-incluido" name="plan_alimentacion" value="todo-incluido"
+                                class="w-4 h-4 text-green-600 focus:ring-green-500">
+                            <label for="todo-incluido" class="ml-3 text-sm font-medium text-gray-700">Todo
+                                incluido</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Datos del Huésped Principal -->
+                <fieldset class="border-2 border-gray-200 rounded-lg p-6">
+                    <legend class="text-lg font-semibold text-gray-800 px-3 bg-white">👤 Datos del Huésped Principal
+                    </legend>
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div>
+                            <label for="titulo" class="block text-sm font-medium text-gray-700 mb-2">Título:</label>
+                            <select id="titulo" name="titulo"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="sr">Sr.</option>
+                                <option value="sra">Sra.</option>
+                                <option value="srta">Srta.</option>
+                                <option value="dr">Dr.</option>
+                                <option value="dra">Dra.</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <div>
+                            <label for="apellido" class="block text-sm font-medium text-gray-700 mb-2">Apellido:</label>
+                            <input type="text" id="apellido" name="apellido" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <div class="col-span-1 md:col-span-2">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Correo
+                                electrónico:</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <div>
+                            <label for="telefono" class="block text-sm font-medium text-gray-700 mb-2">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <div>
+                            <label for="fecha-nacimiento" class="block text-sm font-medium text-gray-700 mb-2">Fecha de
+                                nacimiento:</label>
+                            <input type="date" id="fecha-nacimiento" name="fecha_nacimiento" class="w-full px-3 py-2
