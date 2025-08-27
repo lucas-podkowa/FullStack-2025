@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos Position CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            height: 150vh;
+            /* Para poder hacer scroll */
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .ejemplo {
+            margin: 30px 0;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            /* Para los ejemplos absolute */
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        /* Caja base para ejemplos */
+        .caja {
+            width: 120px;
+            height: 80px;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            line-height: 80px;
+        }
+
+        /* Static (por defecto) */
+        .static {
+            background-color: #6c757d;
+            position: static;
+        }
+
+        /* Relative */
+        .relative {
+            background-color: #28a745;
+            position: relative;
+            top: 20px;
+            left: 30px;
+        }
+
+        .relative-container {
+            position: relative;
+            background-color: #f8f9fa;
+            height: 200px;
+            border: 2px dashed #6c757d;
+            margin: 20px 0;
+        }
+
+        /* Absolute */
+        .absolute {
+            background-color: #dc3545;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+        }
+
+        /* Fixed */
+        .fixed {
+            background-color: #007bff;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        /* Sticky */
+        .sticky {
+            background-color: #ffc107;
+            color: #212529;
+            position: sticky;
+            top: 10px;
+            margin: 20px 0;
+        }
+
+        .contenido-largo {
+            height: 300px;
+            background-color: #e9ecef;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        /* Ejemplo comparativo */
+        .comparacion {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .demo-container {
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid #dee2e6;
+            padding: 15px;
+            position: relative;
+            height: 150px;
+        }
+
+        .demo-box {
+            width: 60px;
+            height: 40px;
+            background-color: #17a2b8;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            font-size: 12px;
+        }
+
+        .demo-relative {
+            position: relative;
+            top: 20px;
+            left: 20px;
+        }
+
+        .demo-absolute {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ejemplos de la propiedad Position</h1>
+
+        <div class="ejemplo">
+            <h3>1. Position: Static (por defecto)</h3>
+            <div class="caja static">Static</div>
+            <p>Los elementos con position: static siguen el flujo normal del documento. Las propiedades top, right,
+                bottom, left no tienen efecto.</p>
+        </div>
+
+        <div class="ejemplo">
+            <h3>2. Position: Relative</h3>
+            <div class="caja static">Static</div>
+            <div class="caja relative">Relative</div>
+            <div class="caja static">Static</div>
+            <p>Position: relative mueve el elemento desde su posición original, pero conserva su espacio en el flujo del
+                documento.</p>
+        </div>
+
+        <div class="ejemplo">
+            <h3>3. Position: Absolute</h3>
+            <div class="relative-container">
+                <p>Contenedor con position: relative</p>
+                <div class="caja absolute">Absolute</div>
+            </div>
+            <p>Position: absolute posiciona el elemento relativo al ancestro posicionado más cercano (no static). Si no
+                encuentra ninguno, se posiciona relativo al body.</p>
+        </div>
+
+        <div class="ejemplo">
+            <h3>4. Position: Sticky</h3>
+            <div class="caja sticky">Sticky</div>
+            <div class="contenido-largo">
+                <p><strong>Haz scroll para ver el efecto sticky!</strong></p>
+                <p>Este es contenido largo para demostrar el comportamiento sticky. El elemento amarillo se "pega"
+                    cuando llegas a su posición de activación.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.</p>
+            </div>
+        </div>
+
+        <div class="ejemplo">
+            <h3>5. Comparación Relative vs Absolute</h3>
+            <div class="comparacion">
+                <div class="demo-container">
+                    <h4>Relative</h4>
+                    <div class="demo-box">Original</div>
+                    <div class="demo-box demo-relative">Moved</div>
+                    <div class="demo-box">Next</div>
+                </div>
+                <div class="demo-container">
+                    <h4>Absolute</h4>
+                    <div class="demo-box">Original</div>
+                    <div class="demo-box demo-absolute">Moved</div>
+                    <div class="demo-box">Next</div>
+                </div>
+            </div>
+            <p><strong>Diferencia clave:</strong> Relative mantiene su espacio original, Absolute no ocupa espacio en el
+                flujo normal.</p>
+        </div>
+
+        <div style="height: 200px;">
+            <p>Contenido adicional para scroll...</p>
+        </div>
+    </div>
+
+    <!-- Fixed siempre visible -->
+    <div class="caja fixed">Fixed</div>
+</body>
+
+</html>

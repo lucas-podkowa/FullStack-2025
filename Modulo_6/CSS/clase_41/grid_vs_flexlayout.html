@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Display Grid</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        .caja {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .g {
+            background-color: #2ecc71;
+        }
+
+        .f {
+            background-color: #3498db;
+        }
+
+        .contenedor-grid {}
+
+        /*-------------------------------------------------------*/
+
+        .contenedor-flex {}
+    </style>
+</head>
+
+<body>
+
+    <h1>Ejemplo con Display Grid</h1>
+    <p>Grid es bidimensional: organiza los elementos en filas y columnas.</p>
+
+    <div class="contenedor-grid">
+        <div class="caja g">Caja 1</div>
+        <div class="caja g">Caja 2</div>
+        <div class="caja g">Caja 3</div>
+        <div class="caja g">Caja 4</div>
+        <div class="caja g">Caja 5</div>
+        <div class="caja g">Caja 6</div>
+    </div>
+
+    <br><br>
+
+    <h1>Ejemplo con Display Flex</h1>
+    <p>Flexbox es unidimensional: organiza los elementos en una fila o columna.</p>
+
+    <div class="contenedor-flex">
+        <div class="caja f">Caja 1</div>
+        <div class="caja f">Caja 2</div>
+        <div class="caja f">Caja 3</div>
+        <div class="caja f">Caja 4</div>
+        <div class="caja f">Caja 5</div>
+        <div class="caja f">Caja 6</div>
+    </div>
+
+
+    <br><br>
+
+    <h2>Order en Flex</h2>
+
+    <div class="contenedor-order">
+        <div class="caja c1">Caja 1</div>
+        <div class="caja c2">Caja 2</div>
+        <div class="caja c3">Caja 3</div>
+    </div>
+
+    <style>
+        .contenedor-order {
+            background-color: grey;
+            padding: 20px;
+            height: 100px;
+        }
+
+        .c1 {
+            background-color: lightgreen;
+        }
+
+        .c2 {
+            background-color: lightskyblue;
+        }
+
+        .c3 {
+            background-color: lightgray;
+        }
+    </style>
+
+</body>
+
+</html>

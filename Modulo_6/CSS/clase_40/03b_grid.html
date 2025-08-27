@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <header class="caja">Cabecera</header>
+        <nav class="caja">Menu principal</nav>
+        <section class="cont_principal caja">
+            Contenido principal
+        </section>
+        <aside class="caja">Barra lateral</aside>
+        <footer class="caja">Pie de Página</footer>
+    </div>
+</body>
+
+
+<style>
+    .contenedor {
+        height: 100vh;
+        display: grid;
+        grid-template-areas:
+            'cabecera cabecera'
+            'menu menu'
+            'principal lateral'
+            'pie pie';
+        grid-template-rows: 15% 5% auto 15%;
+
+    }
+
+    .caja {
+        padding: 20px;
+        border: 2px solid black;
+
+        text-align: center;
+    }
+
+    header {
+        background-color: #ddd;
+        grid-area: cabecera;
+
+    }
+
+    nav {
+        background-color: #bbb;
+        grid-area: menu;
+    }
+
+    .cont_principal {
+        background-color: #eee;
+        grid-area: principal;
+    }
+
+    aside {
+        background-color: #999;
+        grid-area: lateral
+    }
+
+    footer {
+        background-color: #777;
+        grid-area: pie
+    }
+</style>
+
+</html>

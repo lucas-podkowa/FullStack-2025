@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos Float CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .ejemplo {
+            margin: 30px 0;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        /* Float Left */
+        .float-left {
+            float: left;
+            width: 200px;
+            height: 100px;
+            background-color: #ffcccb;
+            margin: 0 15px 15px 0;
+            padding: 10px;
+            border: 2px solid #ff6b6b;
+        }
+
+        /* Float Right */
+        .float-right {
+            float: right;
+            width: 200px;
+            height: 100px;
+            background-color: #add8e6;
+            margin: 0 0 15px 15px;
+            padding: 10px;
+            border: 2px solid #4dabf7;
+        }
+
+        /* Clearfix para contener floats */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Ejemplo de layout con float */
+        .sidebar {
+            float: left;
+            width: 200px;
+            background-color: #e9ecef;
+            padding: 15px;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        .content {
+            margin-left: 240px;
+            /* Ancho sidebar + margen */
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Ejemplos de la propiedad Float</h1>
+
+    <div class="ejemplo">
+        <h3>1. Float Left</h3>
+        <div class="float-left">
+            <strong>Float: left</strong><br>
+            Este div flota a la izquierda
+        </div>
+        <p>Este texto fluye alrededor del elemento flotante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris.</p>
+        <div class="clear"></div>
+    </div>
+
+    <div class="ejemplo">
+        <h3>2. Float Right</h3>
+        <div class="float-right">
+            <strong>Float: right</strong><br>
+            Este div flota a la derecha
+        </div>
+        <p>Este texto fluye alrededor del elemento que flota a la derecha. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation.</p>
+        <div class="clear"></div>
+    </div>
+
+    <div class="ejemplo clearfix">
+        <h3>3. Layout básico con Float</h3>
+        <div class="sidebar">
+            <h4>Sidebar</h4>
+            <ul>
+                <li>Enlace 1</li>
+                <li>Enlace 2</li>
+                <li>Enlace 3</li>
+            </ul>
+        </div>
+        <div class="content">
+            <h4>Contenido Principal</h4>
+            <p>Este es el contenido principal que se acomoda al lado del sidebar flotante.</p>
+            <p>El sidebar tiene float: left, y este contenido tiene un margin-left para dejar espacio.</p>
+        </div>
+    </div>
+</body>
+
+</html>

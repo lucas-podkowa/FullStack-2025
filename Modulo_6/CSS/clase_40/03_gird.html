@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="contenedor">
+        <div class="caja">caja</div>
+        <div class="caja">caja mas grade</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+        <div class="caja">caja</div>
+    </section>
+</body>
+<style>
+    .caja {
+
+        height: 100px;
+        background-color: grey;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 100px;
+
+        /* float: left; */
+    }
+
+    .contenedor {
+        height: 100%;
+        width: 80%;
+        margin: 0 auto;
+        background-color: lightskyblue;
+        border: 1px solid black;
+        padding: 20px;
+
+        display: grid;
+        /* grid-template-columns: auto auto auto; */
+        /* grid-template-columns: 10% auto 25%; */
+        /* grid-template-columns: 1fr auto 2fr; */
+        grid-template-columns: 1fr minmax(300px, 3fr) 2fr;
+
+        /*al justificar, el tamaño de "auto" se adapta al contenido*/
+        /* justify-content: space-between; */
+
+
+    }
+</style>
+
+</html>

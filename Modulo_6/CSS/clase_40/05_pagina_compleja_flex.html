@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura HTML con main</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Estilos para visualizar la estructura */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        nav a:hover {
+            background-color: #2c3e50;
+            border-radius: 3px;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 200px);
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        main {
+            flex: 1;
+            background-color: #ecf0f1;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 3px solid #3498db;
+        }
+
+        aside {
+            width: 250px;
+            background-color: #f39c12;
+            padding: 1rem;
+            border-radius: 8px;
+            color: white;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .estructura {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .elemento {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+
+        .correcto {
+            border-left-color: #27ae60;
+            background-color: #d5f4e6;
+        }
+
+        .incorrecto {
+            border-left-color: #e74c3c;
+            background-color: #fdf2f2;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1. HEADER: Siempre al inicio del body -->
+    <header>
+        <h1>Mi Sitio Web</h1>
+        <p>Ejemplo de estructura HTML correcta</p>
+    </header>
+
+    <!-- 2. NAV: Puede ir dentro o fuera del header -->
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- 3. MAIN: Contenido principal de la página -->
+        <main>
+            <h2>Contenido Principal (main)</h2>
+
+            <article>
+                <h3>¿Dónde va el elemento main?</h3>
+
+                <section>
+                    <h4>📍 Ubicación del main:</h4>
+                    <ul>
+                        <li><strong>DENTRO del body</strong> - Siempre debe estar contenido en el body</li>
+                        <li><strong>DESPUÉS del header</strong> - El header va primero, luego el main</li>
+                        <li><strong>ANTES del footer</strong> - El footer cierra la página</li>
+                        <li><strong>PUEDE ir antes o después del aside</strong> - Depende del diseño</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>✅ Estructura correcta:</h4>
+                    <div class="estructura">
+                        <div class="elemento correcto">&lt;!DOCTYPE html&gt;</div>
+                        <div class="elemento correcto">&lt;html&gt;</div>
+                        <div class="elemento correcto">&nbsp;&nbsp;&lt;head&gt;...&lt;/head&gt;</div>
+                        <div class="elemento correcto">&nbsp;&nbsp;&lt;body&gt;</div>
+                        <div class="elemento correcto">&nbsp;&nbsp;&nbsp;&nbsp;&lt;header&gt;...&lt;/header&gt;</div>
+                        <div class="elemento correcto">&nbsp;&nbsp;&nbsp;&nbsp;&lt;nav&gt;...&lt;/nav&gt;</div>
+                        <div class="elemento correcto" style="font-weight: bold;">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;main&gt;...&lt;/main&gt;</div>
+                        <div class="elemento correcto">&nbsp;&nbsp;&nbsp;&nbsp;&lt;aside&gt;...&lt;/aside&gt;</div>
+                        <div class="elemento correcto">&nbsp;&nbsp;&nbsp;&nbsp;&lt;footer&gt;...&lt;/footer&gt;</div>
+                        <div class="elemento correcto">&nbsp;&nbsp;&lt;/body&gt;</div>
+                        <div class="elemento correcto">&lt;/html&gt;</div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4>❌ Errores comunes:</h4>
+                    <div class="estructura">
+                        <div class="elemento incorrecto">❌ <code>&lt;main&gt;</code> fuera del <code>&lt;body&gt;</code>
+                        </div>
+                        <div class="elemento incorrecto">❌ <code>&lt;main&gt;</code> antes del
+                            <code>&lt;header&gt;</code></div>
+                        <div class="elemento incorrecto">❌ <code>&lt;main&gt;</code> después del
+                            <code>&lt;footer&gt;</code></div>
+                        <div class="elemento incorrecto">❌ Múltiples elementos <code>&lt;main&gt;</code> en la misma
+                            página</div>
+                    </div>
+                </section>
+
+                <section>
+                    <h4>🎯 Propósito del main:</h4>
+                    <p>El elemento <code>&lt;main&gt;</code> representa el <strong>contenido principal</strong> de la
+                        página. Debe contener el contenido que es único y central para esa página específica.</p>
+
+                    <p><strong>¿Qué va dentro del main?</strong></p>
+                    <ul>
+                        <li>Artículos principales</li>
+                        <li>Contenido único de la página</li>
+                        <li>Formularios principales</li>
+                        <li>Resultados de búsqueda</li>
+                    </ul>
+
+                    <p><strong>¿Qué NO va dentro del main?</strong></p>
+                    <ul>
+                        <li>Navegación (nav)</li>
+                        <li>Información de copyright</li>
+                        <li>Logos del sitio</li>
+                        <li>Formularios de búsqueda (si se repiten en todas las páginas)</li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+
+        <!-- 4. ASIDE: Contenido secundario -->
+        <aside>
+            <h3>Sidebar (aside)</h3>
+            <ul>
+                <li>Enlaces relacionados</li>
+                <li>Publicidad</li>
+                <li>Información adicional</li>
+                <li>Widgets</li>
+            </ul>
+
+            <h4>📝 Nota:</h4>
+            <p>El <code>aside</code> puede ir antes o después del <code>main</code> dependiendo del diseño visual que
+                quieras lograr.</p>
+        </aside>
+    </div>
+
+    <!-- 5. FOOTER: Siempre al final del body -->
+    <footer>
+        <p>&copy; 2025 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
+</body>
+
+</html>
