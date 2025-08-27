@@ -23,13 +23,47 @@
 
         .f {
             background-color: #3498db;
+            margin: 10px;
+            /* width: 150px; */
         }
 
-        .contenedor-grid {}
+        .contenedor-grid {
+            /* height: 400px; */
+            display: grid;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 2px solid #2ecc71;
+
+
+            grid-template-columns: repeat(3, 1fr);
+            /* Crea 3 columnas de igual tamaño */
+
+            gap: 20px;
+            /* Espacio entre las celdas de la cuadrícula */
+        }
 
         /*-------------------------------------------------------*/
 
-        .contenedor-flex {}
+        .contenedor-flex {
+            height: 400px;
+            display: flex;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 2px solid #3498db;
+
+
+            flex-wrap: wrap;
+            /* Permite que los elementos pasen a la siguiente línea */
+
+            justify-content: space-around;
+            /* Distribuye el espacio entre los elementos */
+
+            align-items: flex-start;
+            /* Alinea los elementos en el eje transversal dentro de la fila*/
+
+            align-content: center;
+            /* Alinea los elementos en el eje transversal en todo el contenedor*/
+        }
     </style>
 </head>
 
@@ -77,18 +111,39 @@
             background-color: grey;
             padding: 20px;
             height: 100px;
+
+            display: flex;
+
+            /* flex-direction: column; */
+            /* flex-direction: row; */
+            /* flex-wrap: wrap; */
+            /* flex-wrap: nowrap; */
+            flex-flow: row wrap;
+
+            /*gap: es una alternativa*/
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
         .c1 {
             background-color: lightgreen;
+            order: 3;
+            flex-grow: 5;
         }
 
         .c2 {
             background-color: lightskyblue;
+            order: 2;
+            flex-grow: 1;
+            /*derecho a expandirse*/
+            flex-shrink: 0;
+            /*derecho a achicarse*/
         }
 
         .c3 {
             background-color: lightgray;
+            flex-grow: 0;
         }
     </style>
 
