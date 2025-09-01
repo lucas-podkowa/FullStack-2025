@@ -1,11 +1,31 @@
 import { pool } from "../config/db.js";
 
 const bookModel = {
-  getAll: async () => {
+  getAll: async (page = 1, limit = 10, searchTerm = '') => {
     try {
-      const query = "SELECT * FROM libro";
-      const [rows] = await pool.query(query);
-      return rows;
+      const offset = (page - 1) * limit;
+      let query = "SELECT * FROM libro";
+      let countQuery = "SELECT COUNT(*) as count FROM libro";
+      const params = [];
+      const countParams = [];
+
+      if (searchTerm) {
+        query += " WHERE titulo LIKE ? OR autor LIKE ?";
+        countQuery += " WHERE titulo LIKE ? OR autor LIKE ?";
+        params.push(`%${searchTerm}%`, `%${searchTerm}%`);
+        countParams.push(`%${searchTerm}%`, `%${searchTerm}%`);
+      }
+
+      query += " LIMIT ? OFFSET ?";
+      params.push(parseInt(limit), parseInt(offset));
+
+      const [rows] = await pool.query(query, params);
+      const [countRows] = await pool.query(countQuery, countParams);
+
+      return {
+        books: rows,
+        totalPages: Math.ceil(countRows[0].count / limit),
+      };
     } catch (error) {
       console.error("Error fetching books:", error);
       throw new Error("Could not fetch books from the database.");

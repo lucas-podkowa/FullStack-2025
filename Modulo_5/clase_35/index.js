@@ -3,6 +3,7 @@ import bookRouter from "./src/routes/book.routes.js";
 import reserveRouter from "./src/routes/reserve.routes.js";
 import reviewRouter from "./src/routes/review.routes.js";
 import userRouter from "./src/routes/user.routes.js";
+import authRouter from "./src/routes/auth.routes.js";
 import 'dotenv/config';
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -14,10 +15,12 @@ app.use(express.text());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(bookRouter);
-app.use(reserveRouter);
-app.use(reviewRouter);
-app.use(userRouter);
+app.use("/api", bookRouter);
+app.use("/api", reserveRouter);
+app.use("/api", reviewRouter);
+app.use("/api", userRouter);
+app.use("/api/auth", authRouter);
+
 
 //esto era la fruta de Promise y Async/Await
 
