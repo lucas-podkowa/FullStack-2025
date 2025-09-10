@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <button onclick="enviarFormulario()" ="submit">enviar</button>
+
+      <script>
+        function enviarFormulario() {
+          fetch();
+        }
+      </script>
+    </form>
+
+    <!-- Cambiar el texto de un elemento -->
+
+    <h1 id="titulo">Hola mundo</h1>
+    <button onclick="cambiarTexto()">Cambiar texto</button>
+
+    <script>
+      cambiarTexto = () => {
+        document.getElementById("titulo").innerText =
+          "Texto cambiado con JavaScript";
+      };
+    </script>
+
+    <hr />
+    <br />
+    <!-- Cambiar el color de un elemento -->
+    <p id="parrafo">Este texto cambiará de color</p>
+    <button onclick="cambiarColor()">Cambiar color</button>
+
+    <script>
+      function cambiarColor() {
+        document.getElementById("parrafo").style.color = "red";
+        document.getElementById("parrafo").style.backgroundColor = "green";
+      }
+    </script>
+
+    <hr />
+    <br />
+
+    <!--Mostrar/Ocultar un elemento -->
+
+    <p id="mensaje">Este mensaje se puede ocultar</p>
+    <button onclick="toggleMensaje()">Mostrar/Ocultar</button>
+
+    <script>
+      function toggleMensaje() {
+        const elemento = document.getElementById("mensaje");
+        elemento.style.display =
+          elemento.style.display === "none" ? "block" : "none";
+      }
+    </script>
+
+    <hr />
+    <br />
+    <!--  Cambiar la imagen de un <img> -->
+    <img id="imagen" src="./images/cat_1.png" width="200" />
+    <button onclick="cambiarImagen()">Cambiar imagen</button>
+
+    <script>
+      function cambiarImagen() {
+        document.getElementById("imagen").src = "./images/cat_2.png";
+      }
+    </script>
+
+    <hr />
+    <br />
+    <!-- Leer el valor de un <input> -->
+    <input type="text" id="nombre" placeholder="Escribe tu nombre" />
+    <button onclick="saludar()">Saludar</button>
+
+    <script>
+      function saludar() {
+        const nombre = document.getElementById("nombre").value;
+        alert("Hola " + nombre);
+      }
+    </script>
+
+    <hr />
+    <br />
+    <!-- Agregar un nuevo elemento a la lista -->
+    <ul id="lista">
+      <li>Elemento 1</li>
+    </ul>
+    <button onchange="agregarElemento()">Agregar</button>
+
+    <script>
+      function agregarElemento() {
+        const nuevo = document.createElement("li");
+        nuevo.textContent = "Nuevo elemento";
+        document.getElementById("lista").appendChild(nuevo);
+      }
+    </script>
+
+    <hr />
+    <br />
+    <!-- Contar clics en un botón -->
+    <button onclick="contar()">Clic aquí</button>
+    <p id="contador">Clics: 0</p>
+
+    <script>
+      let clicks = 0;
+      function contar() {
+        clicks++;
+        document.getElementById("contador").innerText = "Clics: " + clicks;
+      }
+    </script>
+
+    <hr />
+    <br />
+    <!-- Cambiar el fondo de la página -->
+    <button onclick="cambiarFondo()">Cambiar fondo</button>
+
+    <script>
+      function cambiarFondo() {
+        document.body.style.backgroundColor = "lightblue";
+      }
+    </script>
+
+    <hr />
+    <br />
+    <!-- Validar un formulario sencillo -->
+    <input type="email" id="correo" placeholder="Ingresa tu correo" />
+    <button onclick="validar()">Validar</button>
+
+    <script>
+      function validar() {
+        const correo = document.getElementById("correo").value;
+        if (correo.includes("@")) {
+          alert("Correo válido");
+        } else {
+          alert("Correo inválido");
+        }
+      }
+    </script>
+
+    <!-- Escuchar eventos con addEventListener -->
+    <button id="btn">Pasa el mouse aquí</button>
+    <p id="info"></p>
+
+    <script>
+      document.getElementById("btn").addEventListener("mouseover", function () {
+        document.getElementById("info").innerText = "¡Estás sobre el botón!";
+      });
+    </script>
+  </body>
+</html>
