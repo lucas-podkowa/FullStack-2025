@@ -1,0 +1,13 @@
+.elementoMenu {
+  color: green;
+}
+
+.menuPrincipal {
+  font-size: 3rem;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
