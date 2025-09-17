@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./BookCard.css";
 
-export default function BookCard({ id, title, author, price, image }) {
+export default function BookCard({ book }) {
+  // Desestructuración del objeto recibido
+  const { id, title, author, price, image } = book;
+
   const navigate = useNavigate();
 
   const handleClic = () => {

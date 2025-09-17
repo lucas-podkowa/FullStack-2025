@@ -40,6 +40,13 @@ function Books() {
             price: 25000,
             image: "https://robohash.org/4",
           },
+          {
+            id: 5,
+            title: "La Psicología del Dinero",
+            author: "Morgan Housel",
+            price: 25000,
+            image: "https://robohash.org/5",
+          },
         ];
 
         setBooks(data);
@@ -59,19 +66,12 @@ function Books() {
 
   return (
     <>
+      <Outlet />
       <div className="books-container">
-        {books.map((book) => (
-          <BookCard
-            key={book.id}
-            id={book.id}
-            title={book.title}
-            author={book.author}
-            price={book.price}
-            image={book.image}
-          />
+        {books.map((unLibro) => (
+          <BookCard key={unLibro.id} book={unLibro} />
         ))}
       </div>
-      <Outlet />
     </>
   );
 }

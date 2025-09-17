@@ -8,6 +8,8 @@ import Loan from "./pages/Loan";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 import BookDetail from "./components/BookDetail";
+import Libros from "./pruebas/map";
+import Gancho from "./pruebas/Gancho";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       {/* fuera de las rutas se coloca la barra de navegacion para que esté siempre visible */}
       <main className="home-page">
         <Routes>
+          <Route path="/testmap" element={<Libros />}></Route>
+          <Route path="/gancho" element={<Gancho />}></Route>
           <Route path="/" element={<Home />}></Route>
 
           {/* Ruta padre */}
@@ -24,7 +28,7 @@ function App() {
             <Route path=":id" element={<BookDetail />} />
           </Route>
 
-          <Route path="/reservas" element={<Loan></Loan>}></Route>
+          <Route path="/reservas/" element={<Loan></Loan>}></Route>
           <Route path="/nosotros" element={<About></About>}></Route>
           {/* la ruta de escape/falla siempre se coloca al final */}
           <Route path="*" element={<NotFound />}></Route>

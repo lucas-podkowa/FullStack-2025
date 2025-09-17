@@ -15,6 +15,9 @@ function Menu() {
           <li>
             <Link to="/reservas">Reservas</Link>
           </li>
+          <li>
+            <Link to="/gancho">Hook</Link>
+          </li>
         </ul>
       </nav>
     </header>

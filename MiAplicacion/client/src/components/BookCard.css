@@ -11,7 +11,7 @@
 
 .book-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 5px 10px rgba(255, 255, 255);
+  /* box-shadow: 0 5px 10px rgba(255, 255, 255); */
 }
 
 .book-image {
@@ -23,7 +23,7 @@
 }
 
 .book-title {
-  font-size: 18px;
+  font-size: 20px;
   margin: 8px 0;
 }
 
