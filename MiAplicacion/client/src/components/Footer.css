@@ -1,0 +1,27 @@
+:root {
+  --fondo-footer-header: rgb(50, 70, 100);
+  --hover-footer-header: rgb(70, 90, 140);
+}
+footer {
+  background-color: var(--fondo-footer-header);
+  padding: 3rem;
+  color: #fff;
+}
+
+footer section {
+  float: right;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  transition: color 0.3s ease;
+  color: #fff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: salmon;
+}

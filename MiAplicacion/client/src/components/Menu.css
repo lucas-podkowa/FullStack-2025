@@ -1,0 +1,32 @@
+:root {
+  --fondo-footer-header: rgb(50, 70, 100);
+  --hover-footer-header: rgb(70, 90, 140);
+}
+
+.menu-principal {
+  background-color: var(--fondo-footer-header);
+  padding: 0.5rem 1rem;
+}
+.menu-principal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+.menu-principal li a:hover {
+  background-color: var(--hover-footer-header);
+}
+
+.menu-principal a {
+  color: white; /* texto blanco */
+  text-decoration: none; /* sin subrayado */
+  padding: 0.5rem 1rem; /* área clickeable */
+  transition: background 0.5s; /* animación suave */
+  border-radius: 2px; /* bordes redondeados */
+}
+
+.seleccionado {
+  background-color: #007bff;
+  color: #fff;
+}

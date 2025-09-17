@@ -1,7 +1,12 @@
+import "./Footer.css";
+
 export default function Footer() {
   return (
-    <section>
-      <h3>trabaja con nosotros</h3>
-    </section>
+    <footer>
+      <section>
+        <a href="mailto:silicon@gmail.com">Contáctame aquí</a>
+      </section>
+      <p>Copyright 2025</p>
+    </footer>
   );
 }

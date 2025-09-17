@@ -1,13 +1,78 @@
-.elementoMenu {
-  color: green;
+:root {
+  --fondo-footer-header: rgb(50, 70, 100);
+  --hover-footer-header: rgb(70, 90, 140);
 }
 
-.menuPrincipal {
-  font-size: 3rem;
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
 }
 
-.contenedor {
+#root {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* ocupa todo el espacio disponible */
+}
+
+/* estilos de /pages <NotFound> */
+/* ---------------------------------------------------------- */
+
+.not-found-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.not-found-container h1 {
+  font-size: 2rem;
+  color: #ff6b6b;
+}
+
+.not-found-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.back-home a {
+  text-decoration: none;
+  background-color: var(--fondo-footer-header);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.back-home a:hover {
+  background-color: var(--hover-footer-header);
+}
+
+/* estilos de /pages <Home> */
+/* ---------------------------------------------------------- */
+
+.home-page {
+  background: rgba(255, 255, 255, 0.4) url("../assets/background.jpg") no-repeat
+    center center;
+  background-size: cover;
+  background-blend-mode: lighten;
+  min-height: 100%;
+  color: black;
+}
+
+/* estilos de /pages <Books> */
+/* ---------------------------------------------------------- */
+
+.books-container {
+  display: flex;
+  gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
 }

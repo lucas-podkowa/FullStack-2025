@@ -1,51 +1,37 @@
-import ConPropiedades from "./components/ConPropiedades.jsx";
-import Menu from "./components/Menu.jsx";
-import Home from "./pages/Home.jsx";
-
-// aquí defino un componente como una funcion local (sin llevarla a un archivo .jsx)
-// al estar dentro del mismo archivo no necesito exportarla 
-const MenuLocal = () => {
-  return (
-    <nav style={{ fontSize: "2rem" }}>
-      <ul style={{ listStyleType: "none", display: "flex", gap: "30px" }}>
-        <li>
-          <a href="">Home</a>
-        </li>
-        <li>
-          <a href="">Libros</a>
-        </li>
-        <li>
-          <a href="">reservas</a>
-        </li>
-      </ul>
-    </nav>
-  );
-};
-
+import "./styles/misEstilos.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Menu from "./components/Menu";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Books from "./pages/Books";
+import Loan from "./pages/Loan";
+import Footer from "./components/Footer";
+import NotFound from "./pages/NotFound";
+import BookDetail from "./components/BookDetail";
 
 function App() {
   return (
-    <>
-      {/* hago uso del menu local */}
-      <MenuLocal></MenuLocal>
+    <BrowserRouter>
+      <Menu></Menu>
+      {/* fuera de las rutas se coloca la barra de navegacion para que esté siempre visible */}
+      <main className="home-page">
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
 
-      {/* llamo al menu externo (desde la carpeta components) */}
-      <Menu />
+          {/* Ruta padre */}
+          <Route path="/libros" element={<Books />}>
+            {/* Ruta hija */}
+            <Route path=":id" element={<BookDetail />} />
+          </Route>
 
-
-      {/* llamo al componente home que se encuentra en la carpeta pages */}
-      <Home />
-
-
-      {/* utilizamos un componente al que le enviamos propiedades */}
-      <ConPropiedades
-        name="lucas" //string
-        numero={1989} //numeros
-        booleano={true} //boleanos 
-        arreglos={[1, 3, "maria"]} // arreglos
-        objetos={{ nombreCalle: "Primeros Colonos", numeroCalle: 1600 }} //objetos
-      />
-    </>
+          <Route path="/reservas" element={<Loan></Loan>}></Route>
+          <Route path="/nosotros" element={<About></About>}></Route>
+          {/* la ruta de escape/falla siempre se coloca al final */}
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </main>
+      <Footer></Footer>
+    </BrowserRouter>
   );
 }
 
