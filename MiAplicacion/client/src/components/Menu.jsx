@@ -5,7 +5,7 @@ function Menu() {
   return (
     <header>
       <nav className="menu-principal">
-        <ul>
+        <ul className="menu-lista">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -17,6 +17,15 @@ function Menu() {
           </li>
           <li>
             <Link to="/gancho">Hook</Link>
+          </li>
+          <li>
+            <Link to="/articulos">Articulos de Ejemplo</Link>
+          </li>
+          <li>
+            <Link to="/usuarios">Usuarios</Link>
+          </li>
+          <li className="login-btn">
+            <Link to="/login">Login</Link>
           </li>
         </ul>
       </nav>

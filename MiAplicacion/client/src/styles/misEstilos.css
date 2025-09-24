@@ -4,8 +4,7 @@
 }
 
 html,
-body,
-#root {
+body {
   height: 100%;
   margin: 0;
 }
@@ -13,10 +12,18 @@ body,
 #root {
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* altura mínima del viewport */
 }
 
-main {
-  flex: 1; /* ocupa todo el espacio disponible */
+/* La sección principal debe crecer */
+.contenido {
+  flex: 1; /* hace que la sección ocupe todo el espacio restante */
+  background: rgba(255, 255, 255, 0.4) url("../assets/background.jpg") no-repeat
+    center center;
+  background-size: cover;
+  background-blend-mode: lighten;
+  color: black;
+  padding: 20px;
 }
 
 /* estilos de /pages <NotFound> */
@@ -75,4 +82,102 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   padding: 20px;
+}
+
+/* estilos de /pages <Login> */
+/* ---------------------------------------------------------- */
+
+.section_login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.container_login {
+  background-color: #eceefb;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.input_login {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border-style: none;
+  border-radius: 2px;
+  box-shadow: 0px 2px 10px 2px #ccc;
+  outline: none;
+}
+
+.input_login:focus {
+  box-shadow: 0px 0px 10px 1px var(--hover-footer-header);
+}
+
+.label_login {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.div_btn {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn_login {
+  background-color: var(--hover-footer-header);
+  padding: 5px 0px;
+  color: white;
+  border-radius: 5px;
+  width: 50%;
+}
+
+.btn_login:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px 1px #544f96;
+}
+
+/* estilos de /usuarios <Usuarios> */
+/* ---------------------------------------------------------- */
+.tabla-usuario {
+  width: 100%;
+  border-collapse: separate; /* importante para que funcione border-radius */
+  border-spacing: 0; /* elimina espacios extra */
+  border: 1px solid #ddd; /* borde exterior */
+  border-radius: 8px; /* redondeo */
+  overflow: hidden; /* fuerza el redondeo visual */
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+}
+
+/* Encabezados */
+.tabla-usuario .encabezado th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 2px solid #ccc;
+}
+
+/* Filas */
+.tabla-usuario .fila {
+  transition: background-color 0.2s ease;
+}
+
+.tabla-usuario .fila:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover */
+.tabla-usuario .fila:hover {
+  background-color: #ccd9f1;
+}
+
+/* Celdas */
+.tabla-usuario .fila td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }

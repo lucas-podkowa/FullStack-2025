@@ -7,23 +7,29 @@
   background-color: var(--fondo-footer-header);
   padding: 0.5rem 1rem;
 }
-.menu-principal ul {
+
+.menu-lista {
+  display: flex;
+  align-items: center;
   list-style: none;
+  gap: 1rem;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 1rem;
 }
-.menu-principal li a:hover {
+.menu-lista li a:hover {
   background-color: var(--hover-footer-header);
 }
 
-.menu-principal a {
+.menu-lista a {
   color: white; /* texto blanco */
   text-decoration: none; /* sin subrayado */
   padding: 0.5rem 1rem; /* área clickeable */
   transition: background 0.5s; /* animación suave */
   border-radius: 2px; /* bordes redondeados */
+}
+
+.menu-lista .login-btn {
+  margin-left: auto; /* empuja el login a la derecha */
 }
 
 .seleccionado {

@@ -10,14 +10,21 @@ import NotFound from "./pages/NotFound";
 import BookDetail from "./components/BookDetail";
 import Libros from "./pruebas/map";
 import Gancho from "./pruebas/Gancho";
+import Login from "./pages/Login";
+import Articulos from "./pruebas/Articulos";
+import Usuarios from "./pages/Usuarios";
 
 function App() {
   return (
     <BrowserRouter>
       <Menu></Menu>
       {/* fuera de las rutas se coloca la barra de navegacion para que esté siempre visible */}
-      <main className="home-page">
+
+      <section className="contenido">
         <Routes>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/articulos" element={<Articulos />}></Route>
+          <Route path="/usuarios" element={<Usuarios />}></Route>
           <Route path="/testmap" element={<Libros />}></Route>
           <Route path="/gancho" element={<Gancho />}></Route>
           <Route path="/" element={<Home />}></Route>
@@ -33,7 +40,8 @@ function App() {
           {/* la ruta de escape/falla siempre se coloca al final */}
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
-      </main>
+      </section>
+
       <Footer></Footer>
     </BrowserRouter>
   );
