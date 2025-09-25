@@ -39,11 +39,9 @@ export const login = async (req, res) => {
         expiresIn: process.env.TOKEN_EXPIRATION,
       }
     );
-    res.status(200).json({
-      nombre: user.nombre,
-      apellido: user.apellido,
-      credencial: token,
-    });
+    res
+      .status(200)
+      .json({ usuario: user.nombre + user.apellido, token: token });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

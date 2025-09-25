@@ -1,5 +1,6 @@
 import "./styles/misEstilos.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Menu from "./components/Menu";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -17,6 +18,7 @@ import Usuarios from "./pages/Usuarios";
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Menu></Menu>
       {/* fuera de las rutas se coloca la barra de navegacion para que esté siempre visible */}
 

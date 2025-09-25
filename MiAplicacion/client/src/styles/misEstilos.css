@@ -146,7 +146,6 @@ body {
   border: 1px solid #ddd; /* borde exterior */
   border-radius: 8px; /* redondeo */
   overflow: hidden; /* fuerza el redondeo visual */
-  font-family: Arial, sans-serif;
   font-size: 14px;
   color: #333;
   background-color: #fff;
