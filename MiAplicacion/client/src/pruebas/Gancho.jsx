@@ -14,12 +14,10 @@ export default function Gancho() {
     //llamar otras apis
     //pasar datos a un archivos
 
-    return () => {
-      //borrar datos del estado
-      //borrar kookies
-      //
-      alert("chau");
-    };
+    // return () => {
+    //   //borrar datos del estado
+    //   //borrar kookies
+    // };
   }, []);
 
   function actualizarMail(e) {
