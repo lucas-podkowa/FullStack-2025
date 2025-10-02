@@ -33,7 +33,12 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Contraseña Invalida" });
     }
     const token = jwt.sign(
-      { id: user.id_usuario, rol: user.id_rol },
+      {
+        id: user.id_usuario,
+        rol: user.id_rol,
+        nombre: user.nombre + " " + user.apellido,
+        suCorreo: user.mail,
+      },
       process.env.SECRET_KEY,
       {
         expiresIn: process.env.TOKEN_EXPIRATION,

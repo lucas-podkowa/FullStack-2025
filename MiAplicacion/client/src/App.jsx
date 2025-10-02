@@ -14,6 +14,8 @@ import Gancho from "./pruebas/Gancho";
 import Login from "./pages/Login";
 import Articulos from "./pruebas/Articulos";
 import Usuarios from "./pages/Usuarios";
+import Posts from "./pruebas/AxiosPost";
+import LoginHook from "./pages/Login_hook";
 
 function App() {
   return (
@@ -24,12 +26,16 @@ function App() {
 
       <section className="contenido">
         <Routes>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/login" element={<LoginHook />}></Route>
           <Route path="/articulos" element={<Articulos />}></Route>
           <Route path="/usuarios" element={<Usuarios />}></Route>
           <Route path="/testmap" element={<Libros />}></Route>
           <Route path="/gancho" element={<Gancho />}></Route>
           <Route path="/" element={<Home />}></Route>
+
+          <Route path="/librosaxios" element={<Posts />}></Route>
+
+          <Route path="/libro/edit" element={<Login />}></Route>
 
           {/* Ruta padre */}
           <Route path="/libros" element={<Books />}>

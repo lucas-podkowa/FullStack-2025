@@ -1,13 +1,29 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Menu.css";
+import { jwtDecode } from "jwt-decode";
 
 function Menu() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
+  const [rol, setRol] = useState("");
 
   useEffect(() => {
     const t = sessionStorage.getItem("permiso");
+
+    // if (t) {
+    //   const decoded = jwtDecode(t);
+    //   setRol(decoded.rol);
+    // } else {
+    //   setRol(null);
+    // }
+
+    setRol(t ? jwtDecode(t)?.rol : null);
+    //seteo el rol con un valor valido o con null
+    //eso depende de dos condiciones, si tengo token y si al decodificar tengo el rol
+
+    // t && setRol(jwtDecode(t).rol);
+
     if (t !== token) {
       setToken(t);
       //significa actualizar mi estado interno para tener el ultimo token valido siempre
@@ -34,8 +50,20 @@ function Menu() {
             <li>
               <Link to="/reservas">Reservas</Link>
             </li>
+
+            {rol && rol === 1 ? (
+              <li>
+                <Link to="/libros/create" className="btn btn-info">
+                  Nuevo Libro
+                </Link>
+              </li>
+            ) : null}
+
             <li>
               <Link to="/gancho">Hook</Link>
+            </li>
+            <li>
+              <Link to="/librosaxios">Libros con Axios</Link>
             </li>
             <li>
               <Link to="/articulos">Articulos de Ejemplo</Link>

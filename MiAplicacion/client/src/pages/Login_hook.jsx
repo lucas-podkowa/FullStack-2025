@@ -11,7 +11,7 @@ import { jwtDecode } from "jwt-decode";
 }
 */
 
-export default function Login() {
+export default function LoginHook() {
   let confToast = {
     position: "bottom-center",
     autoClose: 1000,
@@ -21,6 +21,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
+  const [errors, setErrors] = useState({});
 
   //expresion regular
   const isValidEmail = (email) => {
@@ -36,28 +37,51 @@ export default function Login() {
     );
   };
 
+  const handleBlur = (field) => {
+    const newErrors = { ...errors }; //desde cero
+
+    if (field === "mail") {
+      if (!mail) {
+        newErrors.mail = "El correo es obligatorio"; //aca cargo errores en el objeto newError
+      } else if (!isValidEmail(mail)) {
+        newErrors.mail = "Por favor, ingresa un correo electrónico válido"; //aca cargo errores en el objeto newError
+      } else {
+        delete newErrors.mail; //si no hay errores limpio el campo mail del objeto de errors
+      }
+    }
+    if (field === "pass") {
+      if (!pass) {
+        newErrors.pass = "La contraseña es obligatoria";
+      } else if (!isValidPassword(pass)) {
+        newErrors.pass =
+          "La contraseña debe tener al menos 8 caracteres, incluir un número y una mayúscula";
+      } else {
+        delete newErrors.pass;
+      }
+    }
+
+    setErrors(newErrors); //seteo mi variable de estado error con su hook serError y le envio los errores generados (que puede estar vacio)
+  };
+
+  const validateForm = () => {
+    //evento cuando el componente piede el foco, cuando se sale de el
+    handleBlur("mail");
+    handleBlur("pass");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //si mis datos no son lo que necesito debo cortar aqui la funcion
-    // es decir hacer un tipic return de js.
-
-    if (!isValidEmail(mail)) {
-      toast.error(
-        "Por favor, ingresa un correo electrónico válido.",
-        confToast
-      );
-
-      return; //al hacer un return corta el handleSubmit y no sigue con el fetch
+    //invocamos la funcion que valida obligatoriamente mi formilario
+    //aunque no le haya puestoel foco en ningun input
+    validateForm();
+    if (Object.entries(errors).length > 0) {
+      return; // si hay errores entonces retorna y no sigue con el toDoLogin
     }
 
-    if (!isValidPassword(pass)) {
-      toast.error(
-        "La contraseña debe tener al menos 8 caracteres, al menos 1 dígito y al menos una mayúscula",
-        confToast
-      );
-      return;
-    }
+    // Object.keys(obj) → devuelve solo las claves del objeto.
+    // Object.values(obj) → devuelve solo los valores del objeto.
+    // Object.entries(obj) → devuelve pares clave-valo
 
     const toDoLogin = async () => {
       //esto no es JSON puro, sino un Objeto JS
@@ -117,17 +141,31 @@ export default function Login() {
           <label className="label_login">Email</label>
           <input
             onChange={(e) => setMail(e.target.value)}
+            onBlur={() => handleBlur("mail")}
             className="input_login"
             type="text"
           />
+          {/* se muestra un mensajito con el error */}
+          {errors.pass && (
+            <div className="alert alert-warning mt-2" role="alert">
+              {errors.mail}
+            </div>
+          )}
         </div>
         <div>
           <label className="label_login">Contraseña</label>
           <input
             onChange={(e) => setPass(e.target.value)}
+            onBlur={() => handleBlur("pass")}
             className="input_login"
             type="text"
           />
+          {/* se muestra un mensajito con el error */}
+          {errors.pass && (
+            <div className="alert alert-warning mt-2" role="alert">
+              {errors.pass}
+            </div>
+          )}
         </div>
         <div className="div_btn">
           <input className="btn_login" type="submit" value={"Ingresar"} />

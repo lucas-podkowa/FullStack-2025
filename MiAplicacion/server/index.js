@@ -5,12 +5,15 @@ import reviewRouter from "./src/routes/review.routes.js";
 import userRouter from "./src/routes/user.routes.js";
 import authRouter from "./src/routes/auth.routes.js";
 import "dotenv/config";
+import morgan from "morgan";
 import cors from "cors";
 
 const app = express();
 
 app.use(cors());
 app.disable("x-powered-by");
+
+app.use(morgan("tiny"));
 
 app.use(express.text());
 app.use(express.json());
