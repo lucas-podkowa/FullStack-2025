@@ -51,22 +51,21 @@ function Menu() {
               <Link to="/reservas">Reservas</Link>
             </li>
 
-            {rol && rol === 1 ? (
+            {/* si podria ser si quisieramos agregar un nuevo enlace donde solo determinado rol tenga acceso al mismo */}
+            {/* {rol && rol === 1 ? (
               <li>
-                <Link to="/libros/create" className="btn btn-info">
-                  Nuevo Libro
-                </Link>
+                <Link to="/libro/crear">Nuevo Libro</Link>
               </li>
-            ) : null}
+            ) : null} */}
 
             <li>
               <Link to="/gancho">Hook</Link>
             </li>
             <li>
-              <Link to="/librosaxios">Libros con Axios</Link>
+              <Link to="/articulos_axios">Articulos (Axios)</Link>
             </li>
             <li>
-              <Link to="/articulos">Articulos de Ejemplo</Link>
+              <Link to="/articulos">Artiulos (fetch)</Link>
             </li>
             <li>
               <Link to="/usuarios">Usuarios</Link>

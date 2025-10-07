@@ -2,8 +2,8 @@ import bookModel from "../model/book.model.js";
 
 export const getAllBooks = async (req, res) => {
   try {
-    const { page = 1, limit = 10, searchTerm = '' } = req.query;
-    const books = await bookModel.getAll(page, limit, searchTerm);
+    const { busqueda = "" } = req.query;
+    const books = await bookModel.getAll(busqueda);
     res.status(200).json(books);
   } catch (error) {
     res.status(500).json({ message: error.message });

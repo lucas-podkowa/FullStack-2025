@@ -84,11 +84,11 @@ export default function Login() {
 
         if (response.ok) {
           sessionStorage.setItem("permiso", body.token);
-
-          // decodificamos el token para analizar su contenido
-          //-------------------------------------
           const decoded = jwtDecode(body.token);
 
+          // podemos colocar el rol en un sesion
+          //-------------------------------------
+          sessionStorage.setItem("role", decoded.rol);
           //-------------------------------------
 
           // opciones de uso, no es necesario, solo si se le ocurre algo similar
@@ -111,21 +111,21 @@ export default function Login() {
   };
 
   return (
-    <section className="section_login">
-      <form onSubmit={handleSubmit} className="container_login">
+    <section className="section_forms">
+      <form onSubmit={handleSubmit} className="container_form">
         <div>
-          <label className="label_login">Email</label>
+          <label className="label_form">Email</label>
           <input
             onChange={(e) => setMail(e.target.value)}
-            className="input_login"
+            className="input_form"
             type="text"
           />
         </div>
         <div>
-          <label className="label_login">Contraseña</label>
+          <label className="label_form">Contraseña</label>
           <input
             onChange={(e) => setPass(e.target.value)}
-            className="input_login"
+            className="input_form"
             type="text"
           />
         </div>

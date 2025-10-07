@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../services/axiosInstance";
 //import axios from "axios";
 
-const Posts = () => {
+const AxiosPosts = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,4 +39,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default AxiosPosts;

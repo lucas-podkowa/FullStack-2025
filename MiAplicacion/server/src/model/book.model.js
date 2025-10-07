@@ -1,31 +1,18 @@
 import { pool } from "../config/db.js";
 
 const bookModel = {
-  getAll: async (page = 1, limit = 10, searchTerm = '') => {
+  getAll: async (busqueda = "") => {
     try {
-      const offset = (page - 1) * limit;
       let query = "SELECT * FROM libro";
-      let countQuery = "SELECT COUNT(*) as count FROM libro";
       const params = [];
-      const countParams = [];
 
-      if (searchTerm) {
+      if (busqueda) {
         query += " WHERE titulo LIKE ? OR autor LIKE ?";
-        countQuery += " WHERE titulo LIKE ? OR autor LIKE ?";
-        params.push(`%${searchTerm}%`, `%${searchTerm}%`);
-        countParams.push(`%${searchTerm}%`, `%${searchTerm}%`);
+        params.push(`%${busqueda}%`, `%${busqueda}%`);
       }
 
-      query += " LIMIT ? OFFSET ?";
-      params.push(parseInt(limit), parseInt(offset));
-
       const [rows] = await pool.query(query, params);
-      const [countRows] = await pool.query(countQuery, countParams);
-
-      return {
-        books: rows,
-        totalPages: Math.ceil(countRows[0].count / limit),
-      };
+      return rows;
     } catch (error) {
       console.error("Error fetching books:", error);
       throw new Error("Could not fetch books from the database.");
@@ -48,9 +35,24 @@ const bookModel = {
 
   create: async (book) => {
     try {
-      const { titulo, autor, editorial, anio_publicacion, genero, existencias, } = book;
-      const query = "INSERT INTO libro (titulo, autor, editorial, anio_publicacion, genero, existencias) VALUES (?, ?, ?, ?, ?, ?)";
-      const [result] = await pool.query(query, [titulo, autor, editorial, anio_publicacion, genero, existencias,]);
+      const {
+        titulo,
+        autor,
+        editorial,
+        anio_publicacion,
+        genero,
+        existencias,
+      } = book;
+      const query =
+        "INSERT INTO libro (titulo, autor, editorial, anio_publicacion, genero, existencias) VALUES (?, ?, ?, ?, ?, ?)";
+      const [result] = await pool.query(query, [
+        titulo,
+        autor,
+        editorial,
+        anio_publicacion,
+        genero,
+        existencias,
+      ]);
       return { id: result.insertId, ...book };
     } catch (error) {
       console.error("Error creating book:", error);
@@ -59,10 +61,25 @@ const bookModel = {
   },
   updateById: async (id, book) => {
     try {
-      const { titulo, autor, editorial, anio_publicacion, genero, existencias, } = book;
+      const {
+        titulo,
+        autor,
+        editorial,
+        anio_publicacion,
+        genero,
+        existencias,
+      } = book;
       const query =
         "UPDATE libro SET titulo = ?, autor = ?, editorial = ?, anio_publicacion = ?, genero = ?, existencias = ? WHERE id_libro = ?";
-      const [result] = await pool.query(query, [titulo, autor, editorial, anio_publicacion, genero, existencias, id,]);
+      const [result] = await pool.query(query, [
+        titulo,
+        autor,
+        editorial,
+        anio_publicacion,
+        genero,
+        existencias,
+        id,
+      ]);
       return result.affectedRows > 0;
     } catch (error) {
       console.error(`Error updating book with id ${id}:`, error);

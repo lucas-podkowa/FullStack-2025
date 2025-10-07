@@ -4,18 +4,22 @@ import { ToastContainer } from "react-toastify";
 import Menu from "./components/Menu";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Books from "./pages/Books";
 import Loan from "./pages/Loan";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
-import BookDetail from "./components/BookDetail";
 import Libros from "./pruebas/map";
 import Gancho from "./pruebas/Gancho";
-import Login from "./pages/Login";
+import Login from "./pages/auth/Login";
 import Articulos from "./pruebas/Articulos";
-import Usuarios from "./pages/Usuarios";
-import Posts from "./pruebas/AxiosPost";
-import LoginHook from "./pages/Login_hook";
+import Usuarios from "./pages/auth/Usuarios";
+import LoginHook from "./pages/auth/Login_hook";
+import AxiosPosts from "./pruebas/AxiosPost";
+
+// importacion de libros
+import Books from "./pages/book/Books";
+import BookCreate from "./pages/book/BookCreate";
+import BookEdit from "./pages/book/BookEdit";
+import BookDetail from "./components/BookDetail";
 
 function App() {
   return (
@@ -26,16 +30,17 @@ function App() {
 
       <section className="contenido">
         <Routes>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<LoginHook />}></Route>
           <Route path="/articulos" element={<Articulos />}></Route>
           <Route path="/usuarios" element={<Usuarios />}></Route>
           <Route path="/testmap" element={<Libros />}></Route>
           <Route path="/gancho" element={<Gancho />}></Route>
-          <Route path="/" element={<Home />}></Route>
 
-          <Route path="/librosaxios" element={<Posts />}></Route>
+          <Route path="/articulos_axios" element={<AxiosPosts />}></Route>
 
-          <Route path="/libro/edit" element={<Login />}></Route>
+          <Route path="/libro/crear" element={<BookCreate />} />
+          <Route path="/libro/editar/:id" element={<BookEdit />}></Route>
 
           {/* Ruta padre */}
           <Route path="/libros" element={<Books />}>

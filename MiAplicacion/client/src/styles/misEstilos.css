@@ -84,23 +84,23 @@ body {
   padding: 20px;
 }
 
-/* estilos de /pages <Login> */
+/* estilos generales utilizados en distintos formularios */
 /* ---------------------------------------------------------- */
 
-.section_login {
+.section_forms {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 50vh;
 }
 
-.container_login {
+.container_form {
   background-color: #eceefb;
   padding: 1rem;
   border-radius: 5px;
 }
 
-.input_login {
+.input_form {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 10px;
@@ -110,14 +110,18 @@ body {
   outline: none;
 }
 
-.input_login:focus {
-  box-shadow: 0px 0px 10px 1px var(--hover-footer-header);
+.input_form:focus {
+  box-shadow: 0px 0px 10px 1px var(--azul_claro);
 }
 
-.label_login {
+.label_form {
   font-size: 0.8rem;
   font-weight: bold;
 }
+/* ---------------------------------------------------------- */
+
+/* estilos de /pages <Login> */
+/* ---------------------------------------------------------- */
 
 .div_btn {
   margin-top: 20px;
@@ -179,4 +183,39 @@ body {
 .tabla-usuario .fila td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
+}
+
+/* Contenedor del buscador y botón */
+.toolbar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+/* Input buscador */
+.buscador {
+  flex: 1; /* ocupa todo el espacio posible */
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Botón Crear */
+.btn-crear-libro {
+  margin-left: auto; /* empuja el botón a la derecha */
+  padding: 8px 16px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--azul_claro); /* rojo tipo btn-danger */
+  color: white;
+  cursor: pointer;
+  text-decoration: none; /* para que el Link no tenga subrayado */
+  transition: background-color 0.2s ease;
+}
+
+.btn-crear-libro:hover {
+  background-color: greenyellow;
 }

@@ -16,26 +16,25 @@ export default function BookCard({ book }) {
   });
 
   // Desestructuración del objeto recibido
-  const { id, title, author, price, image } = book;
+  const { id, titulo, autor, editorial, anio, genero } = book;
 
   const navigate = useNavigate();
 
   const handleClic = () => {
-    navigate(`/libros/${id}`);
+    // navigate(`/libros/${id}`);
   };
 
   return (
-    <div className="book-card">
-      <img
+    <div onClick={handleClic} className="book-card ">
+      {/* <img
         onClick={handleClic}
         src={image}
         alt={title}
         className="book-image"
-      />
-      <h3 className="book-title">{title}</h3>
-      <p className="book-author">{author}</p>
-      <p className="book-price">${price}</p>
-      <button className="book-button">Añadir al carrito</button>
+      /> */}
+      <h3>{titulo}</h3>
+      <p>{autor}</p>
+      <p>{editorial}</p>
 
       {rol && rol === 1 ? (
         <li>
