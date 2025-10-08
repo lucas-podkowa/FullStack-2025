@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -12,12 +12,13 @@ function BookCreate() {
     editorial: "",
     anio_publicacion: "",
     genero: "",
-    existencias: "",
+    imagen: null,
+    // existencias: "",
   });
 
   const confToast = {
     position: "bottom-center",
-    autoClose: 1000,
+    autoClose: 20000,
     theme: "light",
   };
 
@@ -28,17 +29,21 @@ function BookCreate() {
   //-------------------------------------------------------
   // Validación de campos y seteo de errores
   //-------------------------------------------------------
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   const validate = () => {
     const newErrors = {};
+    //debugger;
     if (!book.titulo) newErrors.titulo = "Título es requerido";
     if (!book.autor) newErrors.autor = "Autor es requerido";
     if (!book.editorial) newErrors.editorial = "Editorial es requerido";
     if (!book.anio_publicacion)
       newErrors.anio_publicacion = "Año de publicación es requerido";
     if (!book.genero) newErrors.genero = "Género es requerido";
-    if (book.existencias === "")
-      newErrors.existencias = "Existencias es requerido";
+    // if (book.existencias === "")
+    //   newErrors.existencias = "Existencias es requerido";
 
     return newErrors;
   };
@@ -46,16 +51,32 @@ function BookCreate() {
   //-------------------------------------------------------
   // Manejar cambios en los inputs
   //-------------------------------------------------------
-  const handleChange = (e) => {
-    setBook({ ...book, [e.target.name]: e.target.value });
+  // const handleChange = (e) => {
+  //   setBook({ ...book, [e.target.name]: e.target.value });
 
-    /*
-    Toma el name del input (titulo, autor, etc.).
-    Crea una copia del objeto book actual con ...book.
-    Actualiza solo la propiedad correspondiente con el valor nuevo.
-    Ejemplo: si escribís en el input autor, React actualiza book.autor sin perder el resto de los campos.
-    */
+  //   /*
+  //   Toma el name del input (titulo, autor, etc.).
+  //   Crea una copia del objeto book actual con ...book.
+  //   Actualiza solo la propiedad correspondiente con el valor nuevo.
+  //   Ejemplo: si escribís en el input autor, React actualiza book.autor sin perder el resto de los campos.
+  //   */
+  // };
+
+  const handleChange = (e) => {
+    //console.log(e.target.files[0]);
+    const { name, type, files, value } = e.target;
+
+    setBook((prevBook) => ({
+      ...prevBook,
+      //[e.target.name]: e.target.type === "file" ? e.target.files[0] : e.target.value
+      [name]: type === "file" ? files[0] : value,
+    }));
   };
+
+  // const handleImagen = (e) => {
+  //   //console.log(e.target.files[0]);
+  //   setBook({ ...book, [e.target.name]: e.target.value });
+  // }
 
   //-------------------------------------------------------
   // Manejar envío del formulario
@@ -74,21 +95,70 @@ function BookCreate() {
         si el backend espera números enteros, tenemos que parsearlos antes de enviar
       */
       const url = "http://localhost:3000/api/libros";
-      const payload = {
-        ...book,
-        anio_publicacion: parseInt(book.anio_publicacion, 10),
-        existencias: parseInt(book.existencias, 10),
-      };
-      // crear Libro
-      const response = await axios.post(url, payload);
+
+      // // --------------- antes -------------------------
+      // const payload = {
+      //   ...book,
+      //   // anio_publicacion: parseInt(book.anio_publicacion, 10),
+      //   // existencias: parseInt(book.existencias, 10),
+      // };
+      // // crear Libro
+      // const response = await axios.post(url, payload);
+      // // --------------- antes -------------------------
+
+      //---------------------------- con imagen --------------------
+
+      const formData = new FormData();
+      formData.append("titulo", book.titulo);
+      formData.append("autor", book.autor);
+      formData.append("editorial", book.editorial);
+      formData.append("anio_publicacion", book.anio_publicacion);
+      formData.append("genero", book.genero);
+
+      // Si el campo imagen no es null, lo agregamos
+      if (book.imagen) formData.append("imagen", book.imagen);
+
+      const response = await axios.post(url, formData);
+      //---------------------------- con imagen --------------------
+
+      //---------------------modo corto --------------------
+      // const formData = new FormData();
+      // Object.entries(book).forEach(([key, value]) => {
+      //   formData.append(key, value);
+      // });
+      //---------------------modo corto --------------------
 
       if (response.status === 201 || response.status === 200) {
         toast.success("Libro creado con exito", confToast);
         navigate("/libros");
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error.message, confToast);
+      if (error.response) {
+        const data = error.response.data;
+
+        // Si viene un array de errores del backend (express-validator)
+        if (Array.isArray(data.errors)) {
+          //const fieldErrors = {};
+          data.errors.forEach((err) => {
+            toast.error(err.msg, confToast);
+            //fieldErrors[err.path] = err.msg;
+          });
+
+          // setErrors((prevErrors) => ({
+          //   ...prevErrors,
+          //   ...fieldErrors
+          // }));
+        }
+
+        // Si viene un mensaje simple (otro tipo de error)
+        else if (data.message) {
+          toast.error(data.message, confToast);
+        } else {
+          toast.error("Error al guardar el libro", confToast);
+        }
+      } else {
+        toast.error("Ocurrió un error inesperado", confToast);
+      }
     }
   };
 
@@ -104,7 +174,7 @@ function BookCreate() {
             onChange={handleChange}
             className="input_form"
           />
-          {errors.titulo && <span>{errors.titulo}</span>}
+          {errors.titulo && <span className="requerido">{errors.titulo}</span>}
         </div>
 
         <div>
@@ -117,7 +187,7 @@ function BookCreate() {
             value={book.autor}
             className="input_form"
           />
-          {errors.autor && <span>{errors.autor}</span>}
+          {errors.autor && <span className="requerido">{errors.autor}</span>}
         </div>
 
         <div>
@@ -129,7 +199,9 @@ function BookCreate() {
             onChange={handleChange}
             className="input_form"
           />
-          {errors.editorial && <span>{errors.editorial}</span>}
+          {errors.editorial && (
+            <span className="requerido">{errors.editorial}</span>
+          )}
         </div>
 
         <div>
@@ -141,7 +213,9 @@ function BookCreate() {
             onChange={handleChange}
             className="input_form"
           />
-          {errors.anio_publicacion && <span>{errors.anio_publicacion}</span>}
+          {errors.anio_publicacion && (
+            <span className="requerido">{errors.anio_publicacion}</span>
+          )}
         </div>
 
         <div>
@@ -153,11 +227,26 @@ function BookCreate() {
             onChange={handleChange}
             className="input_form"
           />
-          {errors.genero && <span>{errors.genero}</span>}
+          {errors.genero && <span className="requerido">{errors.genero}</span>}
         </div>
 
+        {/* ------------------------------------------------------------ */}
         <div>
-          {/* <label className="label_form">Existencias</label> */}
+          {/* <label className="label_form">Imágen</label> */}
+          <input
+            type="file"
+            name="imagen"
+            placeholder="Imágen"
+            // onChange={handleImagen}
+            onChange={handleChange}
+            className="input_form"
+          />
+          {errors.imagen && <span className="requerido">{errors.imagen}</span>}
+        </div>
+        {/* ------------------------------------------------------------ */}
+
+        {/* <div>
+          <label className="label_form">Existencias</label>
           <input
             type="number"
             name="existencias"
@@ -165,8 +254,10 @@ function BookCreate() {
             onChange={handleChange}
             className="input_form"
           />
-          {errors.existencias && <span>{errors.existencias}</span>}
-        </div>
+          {errors.existencias && (
+            <span className="requerido">{errors.existencias}</span>
+          )}
+        </div> */}
 
         <div className="div_btn">
           <button type="submit" className="btn_login">

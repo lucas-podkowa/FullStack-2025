@@ -1,6 +1,6 @@
 :root {
-  --fondo-footer-header: rgb(50, 70, 100);
-  --hover-footer-header: rgb(70, 90, 140);
+  --azul-oscuro: rgb(50, 70, 100);
+  --azul-claro: rgb(70, 90, 140);
 }
 
 html,
@@ -49,7 +49,7 @@ body {
 
 .back-home a {
   text-decoration: none;
-  background-color: var(--fondo-footer-header);
+  background-color: var(--azul-oscuro);
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
@@ -58,7 +58,7 @@ body {
 }
 
 .back-home a:hover {
-  background-color: var(--hover-footer-header);
+  background-color: var(--azul-claro);
 }
 
 /* estilos de /pages <Home> */
@@ -80,7 +80,7 @@ body {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   padding: 20px;
 }
 
@@ -98,12 +98,13 @@ body {
   background-color: #eceefb;
   padding: 1rem;
   border-radius: 5px;
+  min-width: 50vw;
 }
 
 .input_form {
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 10px;
+  margin-top: 10px;
   border-style: none;
   border-radius: 2px;
   box-shadow: 0px 2px 10px 2px #ccc;
@@ -118,6 +119,13 @@ body {
   font-size: 0.8rem;
   font-weight: bold;
 }
+
+.requerido {
+  font-weight: 100;
+  color: red;
+  text-align: end;
+  float: inline-end;
+}
 /* ---------------------------------------------------------- */
 
 /* estilos de /pages <Login> */
@@ -129,7 +137,7 @@ body {
 }
 
 .btn_login {
-  background-color: var(--hover-footer-header);
+  background-color: var(--azul-claro);
   padding: 5px 0px;
   color: white;
   border-radius: 5px;
@@ -209,7 +217,7 @@ body {
   font-size: 1rem;
   border: none;
   border-radius: 6px;
-  background-color: var(--azul_claro); /* rojo tipo btn-danger */
+  background-color: var(--azul-claro); /* rojo tipo btn-danger */
   color: white;
   cursor: pointer;
   text-decoration: none; /* para que el Link no tenga subrayado */
@@ -218,4 +226,9 @@ body {
 
 .btn-crear-libro:hover {
   background-color: greenyellow;
+}
+
+ul,
+li {
+  list-style-type: none;
 }

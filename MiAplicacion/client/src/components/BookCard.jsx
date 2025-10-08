@@ -16,8 +16,7 @@ export default function BookCard({ book }) {
   });
 
   // Desestructuración del objeto recibido
-  const { id, titulo, autor, editorial, anio, genero } = book;
-
+  const { id_libro, titulo, autor, editorial, image_url } = book;
   const navigate = useNavigate();
 
   const handleClic = () => {
@@ -26,19 +25,20 @@ export default function BookCard({ book }) {
 
   return (
     <div onClick={handleClic} className="book-card ">
-      {/* <img
+      <img
         onClick={handleClic}
-        src={image}
-        alt={title}
+        src={image_url}
+        alt={titulo}
         className="book-image"
-      /> */}
+      />
       <h3>{titulo}</h3>
       <p>{autor}</p>
       <p>{editorial}</p>
 
       {rol && rol === 1 ? (
         <li>
-          <Link to="/libro/edit" className="btn btn-danger">
+          {/* <Link to="/libro/editar/{id}" className="btn-crear-libro"> */}
+          <Link to={`/libro/editar/${id_libro}`} className="btn-crear-libro">
             Editar
           </Link>
         </li>

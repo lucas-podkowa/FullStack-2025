@@ -1,4 +1,5 @@
 import { pool } from "../config/db.js";
+import "dotenv/config";
 
 const bookModel = {
   getAll: async (busqueda = "") => {
@@ -12,7 +13,20 @@ const bookModel = {
       }
 
       const [rows] = await pool.query(query, params);
-      return rows;
+
+      //------------------------  OPCIONAL ---------------
+      // //agregar la URL completa si existe imagen
+      const books = rows.map((book) => ({
+        ...book,
+        image_url: book.image_url
+          ? `${process.env.BASE_URL}${book.image_url}`
+          : null,
+      }));
+
+      return books;
+      // //------------------------  OPCIONAL ---------------
+
+      //return rows;
     } catch (error) {
       console.error("Error fetching books:", error);
       throw new Error("Could not fetch books from the database.");
@@ -33,25 +47,21 @@ const bookModel = {
     }
   },
 
+  //agregar existencias
   create: async (book) => {
     try {
-      const {
-        titulo,
-        autor,
-        editorial,
-        anio_publicacion,
-        genero,
-        existencias,
-      } = book;
+      console.log(book);
+      const { titulo, autor, editorial, anio_publicacion, genero, image_url } =
+        book;
       const query =
-        "INSERT INTO libro (titulo, autor, editorial, anio_publicacion, genero, existencias) VALUES (?, ?, ?, ?, ?, ?)";
+        "INSERT INTO libro (titulo, autor, editorial, anio_publicacion, genero, image_url) VALUES (?, ?, ?, ?, ?, ?)";
       const [result] = await pool.query(query, [
         titulo,
         autor,
         editorial,
         anio_publicacion,
         genero,
-        existencias,
+        image_url,
       ]);
       return { id: result.insertId, ...book };
     } catch (error) {

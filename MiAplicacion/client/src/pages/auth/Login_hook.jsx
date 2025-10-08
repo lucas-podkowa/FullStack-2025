@@ -32,8 +32,8 @@ export default function LoginHook() {
     return (
       password.length >= 6 &&
       /\d/.test(password) &&
-      /[a-z]/.test(password) &&
-      /[A-Z]/.test(password)
+      /[a-z]/.test(password)
+      // && /[A-Z]/.test(password)
     );
   };
 

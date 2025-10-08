@@ -24,7 +24,13 @@ export const getBookById = async (req, res) => {
 
 export const createBook = async (req, res) => {
   try {
-    const newBook = await bookModel.create(req.body);
+    const data = req.body;
+    //----------------------------------------------------------------
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+    data.image_url = imagePath;
+    //----------------------------------------------------------------
+
+    const newBook = await bookModel.create(data);
     res.status(201).json(newBook);
   } catch (error) {
     res.status(500).json({ message: error.message });

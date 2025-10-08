@@ -20,6 +20,8 @@ function Books() {
         const response = await axios.get("http://localhost:3000/api/libros", {
           params: { searchTerm }, // pasamos el searchTerm como query param
         });
+
+        console.log(response.data);
         setBooks(response.data);
         setAllBooks(response.data);
       } catch (error) {
@@ -36,6 +38,7 @@ function Books() {
   useEffect(() => {
     if (searchTerm.trim() === "") {
       setBooks(books);
+      console.log(books);
     } else {
       const filtered = allBooks.filter((libro) =>
         libro.titulo.toLowerCase().includes(searchTerm.toLowerCase())
@@ -88,7 +91,7 @@ function Books() {
       y pasarle cada libro individualmente apra que agregue un nuevo card */}
       <div className="books-container">
         {books.map((unLibro) => (
-          <BookCard key={unLibro.id} book={unLibro} />
+          <BookCard key={unLibro.libro_id} book={unLibro} />
         ))}
       </div>
     </>

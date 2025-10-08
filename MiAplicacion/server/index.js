@@ -7,6 +7,7 @@ import authRouter from "./src/routes/auth.routes.js";
 import "dotenv/config";
 import morgan from "morgan";
 import cors from "cors";
+import path from "node:path";
 
 const app = express();
 
@@ -18,6 +19,16 @@ app.use(morgan("tiny"));
 app.use(express.text());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Servir archivos estáticos desde /uploads:
+// esto es necesario para que el servidor pueda visualizar directamente las imagenes, supongamos que
+// el backend corre en http://localhost:8080, entonces el cliente debería recibir algo así:
+// {
+//   "titulo": "El Quijote",
+//   "image_url": "http://localhost:8080/uploads/libros/portada1.jpg"
+// }
+
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 app.use("/api", bookRouter);
 app.use("/api", reserveRouter);

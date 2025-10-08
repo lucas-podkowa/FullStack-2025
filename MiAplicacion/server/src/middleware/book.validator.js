@@ -31,10 +31,10 @@ export const valCreateBook = [
     .withMessage("El género debe ser un texto.")
     .optional(),
 
-  check("existencias")
-    .isInt()
-    .withMessage("Las existencias deben ser un número entero.")
-    .optional(),
+  // check("existencias")
+  //   .isInt()
+  //   .withMessage("Las existencias deben ser un número entero.")
+  //   .optional(),
 
   (req, res, next) => {
     const errors = validationResult(req);
